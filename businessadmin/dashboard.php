@@ -6,13 +6,23 @@ if (!isset($_SESSION['business_user'])) {
                 window.location = "businesssignin.php"
                  </script>';
 } else {
+    if (isset($_GET['id'])) {
+        $index = $_GET['id'];
+        $sql = "UPDATE bookings set approved = 1 WHERE id=$index";
+        if (mysqli_query($conn, $sql)) {
+            echo '<script type="text/javascript">
+                    window.location = "dashboard.php"
+                    </script>';
+        }
+    }
     $business_user_id = $_SESSION['business_user'];
-    $sql = "SELECT * from bookings WHERE business_id=$business_user_id  ";
-    
+    $sql = "SELECT B.id, from_date,to_date, approved, name from bookings B INNER JOIN users U on B.user_id =  U.id WHERE B.business_id=$business_user_id  ";
+
     $result = mysqli_query($conn, $sql);
     while ($booking = mysqli_fetch_assoc($result)) {
+        echo $booking['id'], "\n";
         if ($booking['approved']) {
-           $approved_bookings[] = $booking;
+            $approved_bookings[] = $booking;
         } else {
             $non_approved_bookings[] = $booking;
         }
@@ -43,14 +53,65 @@ if (!isset($_SESSION['business_user'])) {
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <?php foreach($approved_bookings as $a){?>  
-			<div><?php echo $a['from_date'], $a['id']?></div>
-			<?php }?>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">From</th>
+                            <th scope="col">To</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php foreach ($approved_bookings as $a) { ?>
+                            <tr>
+                                <td><?php echo $a['name'] ?></td>
+                                <td><?php echo $a['id'] ?></td>
+                                <td><?php echo $a['to_date'] ?></td>
+                                <td><?php echo $a['from_date'] ?></td>
+                                <td>
+                                    //
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        <?php if (count($approved_bookings) === 0) { ?>
+                            <tr>
+                                <td><?php echo "No approved bookings" ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Pending list
-            <?php foreach($non_approved_bookings as $a){?>  
-			<div><?php echo $a['from_date']?></div>
-			<?php }?>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php foreach ($non_approved_bookings as $a) { ?>
+                            <tr>
+                                <td><?php echo $a['name'] ?></td>
+                                <td><?php echo $a['id'] ?></td>
+                                <td><?php echo $a['from_date'] ?></td>
+                                <td>
+                                    <a href="dashboard.php?id=<?php echo $a['id']; ?>"><button>Approve</button></a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+
+                    </tbody>
+                </table>
             </div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
         </div>
