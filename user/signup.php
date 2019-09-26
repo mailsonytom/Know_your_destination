@@ -6,6 +6,9 @@
         $name = $_POST['name'];
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $address = $_POST['address'];
         $select_query = "SELECT * FROM users";
         // echo $username, $password, $name;
     $result = mysqli_query($conn, $select_query);
@@ -19,7 +22,7 @@
     }
     if($flag == 0){
         $password =password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users (name, username, password) VALUES ('$name', '$username', '$password')";
+        $sql = "INSERT INTO users (name, username, password, phone, email, address) VALUES ('$name', '$username', '$password', '$phone', '$email', '$address')";
         if ($conn->query($sql) === TRUE) {
             echo '<script type="text/javascript">
                     window.location = "signin.html"
