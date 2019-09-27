@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($row = mysqli_fetch_assoc($result)) {
         if (password_verify($password, $row['password'])) {
             $_SESSION['user_id'] = $row['id'];
-            // echo '<script type="text/javascript">
-            //     window.location = ""
-            //      </script>';
+            echo '<script type="text/javascript">
+                window.location = "locations.php"
+                 </script>';
                  echo "Success";
         } else {
             echo "Wrong password. <a href='signin.html'>Click here to try again.</a>";
