@@ -6,10 +6,23 @@ if (!isset($_SESSION['admin_user'])) {
                 window.location = "signin.php"
                  </script>';
 } else {
-    if (isset($_GET['id'])) {
-        $index = $_GET['id'];
-        $sql = "UPDATE bookings set approved = 1 WHERE id=$index";
+    if (isset($_GET['location_id'])) {
+        $index = $_GET['location_id'];
+        echo "location", $index;
+        $sql = "UPDATE locations set approved = 1 WHERE id=$index";
         if (mysqli_query($conn, $sql)) {
+            echo "success";
+            echo '<script type="text/javascript">
+                    window.location = "dashboard.php"
+                    </script>';
+        }
+    }
+    if (isset($_GET['business_id'])) {
+        $index = $_GET['business_id'];
+        echo "location", $index;
+        $sql = "UPDATE business set approved = 1 WHERE id=$index";
+        if (mysqli_query($conn, $sql)) {
+            echo "success";
             echo '<script type="text/javascript">
                     window.location = "dashboard.php"
                     </script>';
@@ -78,13 +91,13 @@ if (!isset($_SESSION['admin_user'])) {
                                 <td><?php echo $a['phone'] ?></td>
                                 <td><?php echo $a['location_name'] ?></td>
                                 <td>
-                                    <a href="dashboard.php?id=<?php echo $a['id']; ?>"><button>Approve</button></a>
+                                    <a href="dashboard.php?business_id=<?php echo $a['id']; ?>"><button class="btn btn-primary">Approve</button></a>
                                 </td>
                             </tr>
                         <?php } ?>
                         <?php if (count($non_approved_business) === 0) { ?>
                             <tr>
-                                <td><?php echo "No approved bookings" ?></td>
+                                <td><?php echo "No pending businesses" ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -110,8 +123,13 @@ if (!isset($_SESSION['admin_user'])) {
                                 <td><?php echo $a['user_name'] ?></td>
                                 <td><?php echo $a['user_phone'] ?></td>
                                 <td>
-                                    <a href="dashboard.php?id=<?php echo $a['id']; ?>"><button>Approve</button></a>
+                                    <a href="dashboard.php?location_id=<?php echo $a['id']; ?>"><button class="btn btn-primary">Approve</button></a>
                                 </td>
+                            </tr>
+                        <?php } ?>
+                        <?php if (count($non_approved_locations) === 0) { ?>
+                            <tr>
+                                <td><?php echo "No pending locations" ?></td>
                             </tr>
                         <?php } ?>
 
