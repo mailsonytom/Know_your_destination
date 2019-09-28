@@ -6,17 +6,7 @@ if (!isset($_SESSION['admin_user'])) {
                 window.location = "signin.php"
                  </script>';
 } else {
-    if (isset($_GET['location_id'])) {
-        $index = $_GET['location_id'];
-        echo "location", $index;
-        $sql = "UPDATE locations set approved = 1 WHERE id=$index";
-        if (mysqli_query($conn, $sql)) {
-            echo "success";
-            echo '<script type="text/javascript">
-                    window.location = "dashboard.php"
-                    </script>';
-        }
-    }
+
     if (isset($_GET['business_id'])) {
         $index = $_GET['business_id'];
         echo "location", $index;
@@ -24,23 +14,21 @@ if (!isset($_SESSION['admin_user'])) {
         if (mysqli_query($conn, $sql)) {
             echo "success";
             echo '<script type="text/javascript">
-                    window.location = "dashboard.php"
+                    window.location = "business.php"
                     </script>';
         }
     }
     $admin_id = $_SESSION['admin_user'];
-    $sql = "SELECT B.id, B.name, B.description, B.owner_name, B.phone, L.name AS location_name from business B INNER JOIN locations L on B.location_id = L.id WHERE B.approved = 0";
+    $sql = "SELECT B.id, B.name, B.description, B.owner_name, B.phone, B.approved , L.name AS location_name from business B INNER JOIN locations L on B.location_id = L.id";
 
     $result = mysqli_query($conn, $sql);
     while ($aBusiness = mysqli_fetch_assoc($result)) {
-        $non_approved_business[] = $aBusiness;
-    }
 
-    $sql = "SELECT L.id, L.name, L.description, U.name as user_name, U.phone as user_phone from locations L INNER JOIN users U on L.requested_user = U.id WHERE L.approved = 0";
-
-    $result = mysqli_query($conn, $sql);
-    while ($aLocation = mysqli_fetch_assoc($result)) {
-        $non_approved_locations[] = $aLocation;
+        if ($aBusiness['approved'] == 0) {
+            $non_approved_business[] = $aBusiness;
+        } else {
+            $approved_business[] = $aBusiness;
+        }
     }
 }
 ?>
@@ -57,13 +45,42 @@ if (!isset($_SESSION['admin_user'])) {
 </head>
 
 <body>
-    <div class="container col-md-6">
+    <nav class="navbar navbar-light bg-info">
+        <span class="navbar-brand mb-0 h1 text-light">Admin Dashboard</span>
+        <a class="ml-auto" href="logout.php">
+            <Button class="btn btn-outline-light">
+                Logout
+            </Button>
+        </a>
+    </nav>
+    <nav class="navbar navbar-light bg-light">
+        <div class="m-auto ">
+
+            <a href="business.php">
+                <Button class="btn btn-secondary">
+                    Business
+                </Button>
+            </a>
+            <a href="locations.php">
+                <Button class="btn btn-light">
+                    Location
+                </Button>
+            </a>
+            <a href="category.php">
+                <Button class="btn btn-light">
+                    Category
+                </Button>
+            </a>
+        </div>
+    </nav>
+    <div class="container col-md-8">
+
         <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Pending Businesses</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pending Locations</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Approved Locations</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -111,25 +128,23 @@ if (!isset($_SESSION['admin_user'])) {
                             <th scope="col">Description</th>
                             <th scope="col">Requested User</th>
                             <th scope="col">User phone</th>
-                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        <?php foreach ($non_approved_locations as $a) { ?>
+                        <?php foreach ($approved_business as $a) { ?>
                             <tr>
                                 <td><?php echo $a['name'] ?></td>
                                 <td><?php echo $a['description'] ?></td>
-                                <td><?php echo $a['user_name'] ?></td>
-                                <td><?php echo $a['user_phone'] ?></td>
-                                <td>
-                                    <a href="dashboard.php?location_id=<?php echo $a['id']; ?>"><button class="btn btn-primary">Approve</button></a>
-                                </td>
+                                <td><?php echo $a['owner_name'] ?></td>
+                                <td><?php echo $a['phone'] ?></td>
+                                <td><?php echo $a['location_name'] ?></td>
+
                             </tr>
                         <?php } ?>
-                        <?php if (count($non_approved_locations) === 0) { ?>
+                        <?php if (count($approved_business) === 0) { ?>
                             <tr>
-                                <td><?php echo "No pending locations" ?></td>
+                                <td><?php echo "No approved businesses" ?></td>
                             </tr>
                         <?php } ?>
 

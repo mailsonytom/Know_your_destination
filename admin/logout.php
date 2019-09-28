@@ -4,6 +4,6 @@ session_unset();
 session_destroy();
 
 echo '<script type="text/javascript">
-                window.location = "businesssignin.php"
+                window.location = "signin.php"
                  </script>'; 
 ?>

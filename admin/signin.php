@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if (password_verify($password, $row['password'])) {
 			$_SESSION['admin_user'] = $row['id'];
 			 echo '<script type="text/javascript">
-                window.location = "dashboard.php"
+                window.location = "business.php"
                  </script>';
 		} else {
 			$error_flag = 1;
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<title> Admin signin</title>
 </head>
 <body>
-	<div class="container col-md-3">
+	<div class="container col-md-6 rounded mt-5 p-4 bg-white">
 		<form action="" method="POST">
 			<div align="center">
 				<h2>Admin Signin </h2>
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			}
 			?>
 		<div align="center">	
-		   <input type="Submit" value="submit" class="btn  btn-secondary">
+		   <input type="Submit" value="submit" class="btn  btn-primary w-100 mt-4">
 	    </div>
 	    </form>
 	</div>
