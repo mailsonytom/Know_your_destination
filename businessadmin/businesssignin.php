@@ -46,12 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-	<div class="container col-md-3">
+	<div class="container col-md-6  rounded mt-5 p-4 bg-white">
 		<form action="" method="POST">
 			<div align="center">
 				<h2> Business Sign-in</h2>
 			</div>
-			<div class="form-group">
+			<div class="form-group mt-5">
 				<label class="col-md-6 ">Username:</label>
 				<input type="text" name="username" class="form-control">
 			</div>
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 			<div align="center">
-				<input type="Submit" value="Submit" class="btn  btn-secondary">
+				<input type="Submit" value="Submit" class="btn  btn-primary w-100">
 			</div>
 		</form>
 

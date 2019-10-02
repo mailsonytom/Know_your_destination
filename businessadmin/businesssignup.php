@@ -20,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$address = $_POST['address'];
 	$location = $_POST['location'];
 	$owner_name = $_POST['owner_name'];
-	$cartegory = $_POST['category'];
+	$category = $_POST['category'];
 	$image = $_FILES['image']['name'];
 	$extension = end(explode(".", $image));
-	$newfilename = $code . "." . $extension;
-	$target = "../images/" . $newfilename;
+	$newfilename = $name . "." . $extension;
+	$target = "../images/business/" . $newfilename;
 	echo "image ", $image;
 	$select_query = "SELECT email FROM business";
 	$result = mysqli_query($conn, $select_query);
@@ -33,18 +33,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$error = "Email already exist";
 			$flag = 1;
 			echo "error";
+		} else if ($row['name'] == $name) {
+			$error = "Business already exist";
+			$flag = 1;
 		}
 	}
+	if (
+		empty($name) || empty($email) || empty($password) || empty($phone)
+		|| empty($location) || empty($owner_name) || empty($category)
+	) {
+		$error = "Please fill in all the details";
+		$flag = 1;
+	}
 	if ($flag == 0) {
-		// $sql = "INSERT INTO business (name, description, owner_name, password, email, phone, address, approved) 
-        // VALUES ('$name', 'Busienss', '$owner_name', '$password', '$email', '$phone', '$address', 0)";
-		// if (mysqli_query($conn, $sql)) {
-		// 	echo '<script type="text/javascript">
-        //             window.location = "comment.html"
-        //             </script>';
-		// } else {
-		// 	echo "Error: " . $sql . "<br>" . $conn->error;
-		// }
+		echo "location id", $location;
+		move_uploaded_file($_FILES['image']['tmp_name'], $target);
+		$sql = "INSERT INTO business (name, description, owner_name, password, email, phone, address, approved, category_id, location_id) 
+        VALUES ('$name', 'Busienss', '$owner_name', '$password', '$email', '$phone', '$address', 0, $category, $location)";
+		if (mysqli_query($conn, $sql)) {
+			echo '<script type="text/javascript">
+                    window.location = "businesssignin.php"
+                    </script>';
+		} else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
 	}
 }
 
@@ -59,12 +71,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-	<div class="container col-md-3">
-		<form action="" method="post">
+	<div class="container col-md-6 rounded mt-5 p-4 bg-white">
+		<form action="" method="POST" enctype="multipart/form-data">
 			<div align="center">
 				<h2> Business sign-up</h2>
 			</div>
-			<div class="form-group">
+			<div class="form-group mt-5">
 				<label class="col-md-6 ">Business name:</label>
 				<input type="text" name="name" class="form-control">
 			</div>
@@ -76,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<label class="col-md-6 ">Location</label>
 				<select name="location" class="form-control" id="exampleFormControlSelect1">
 					<?php foreach ($data as $a) { ?>
-						<option value="<?php echo $a['name'] ?>"><?php echo $a['name'] ?></option>
+						<option value="<?php echo $a['id'] ?>"><?php echo $a['name'] ?></option>
 					<?php } ?>
 				</select>
 			</div>
@@ -115,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			</div>
 			<br>
 			<div align="center">
-				<input type="Submit" value="Submit" class="btn  btn-secondary">
+				<input type="Submit" value="Submit" class="btn  btn-primary w-100">
 			</div>
 			<br>
 		</form>

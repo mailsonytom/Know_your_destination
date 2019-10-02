@@ -20,12 +20,18 @@ if (!isset($_SESSION['business_user'])) {
 
     $result = mysqli_query($conn, $sql);
     while ($booking = mysqli_fetch_assoc($result)) {
-        echo $booking['id'], "\n";
         if ($booking['approved']) {
             $approved_bookings[] = $booking;
         } else {
             $non_approved_bookings[] = $booking;
         }
+    }
+    $sql = "SELECT name ,email, owner_name from business WHERE id=$business_user_id  ";
+
+    $result = mysqli_query($conn, $sql);
+    // $user = mysqli_fetch_assoc($result);
+    while ($data = mysqli_fetch_assoc($result)) {
+        $user = $data;
     }
 }
 ?>
@@ -42,7 +48,16 @@ if (!isset($_SESSION['business_user'])) {
 </head>
 
 <body>
-    <div class="container col-md-6">
+<nav class="navbar navbar-light bg-info">
+        <span class="navbar-brand mb-0 h1 text-light"><?php echo$user['name'],' ( welcome, ',$user['owner_name'], ' )' ?></span>
+        <a class="ml-auto" href="logout.php">
+            <Button class="btn btn-outline-light">
+                Logout
+            </Button>
+        </a>
+    </nav>
+    
+    <div class="container col-md-8">
         <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Approved</a>
