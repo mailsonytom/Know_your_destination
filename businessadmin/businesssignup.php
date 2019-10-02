@@ -71,6 +71,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+	<nav class="navbar navbar-light bg-info">
+		<span class="navbar-brand mb-0 h1 text-light">Know your destination</span>
+		<div class="ml-auto">
+			<a class="" href="businesssignin.php">
+				<Button class="btn btn-outline-light">
+					Sign In
+				</Button>
+			</a>
+		</div>
+	</nav>
 	<div class="container col-md-6 rounded mt-5 p-4 bg-white">
 		<form action="" method="POST" enctype="multipart/form-data">
 			<div align="center">

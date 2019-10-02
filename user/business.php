@@ -8,9 +8,9 @@ if (!isset($_SESSION['user_id'])) {
 } else {
     if (isset($_GET['id'])) {
         $index = $_GET['id'];
-        $sql = "SELECT * from business B WHERE B.location_id = $index";
+        $sql = "SELECT * from business B WHERE B.location_id = $index AND B.approved = 1";
         $result = mysqli_query($conn, $sql);
-        if ($aBusiness =  mysqli_fetch_assoc($result)) {
+        while ($aBusiness =  mysqli_fetch_assoc($result)) {
             $businesses[] = $aBusiness;
         }
     }
@@ -29,15 +29,30 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
+<nav class="navbar navbar-light bg-info">
+        <span class="navbar-brand mb-0 h1 text-light">Know your destination</span>
+        <div class="ml-auto">
+        <a class="mr-2" href="../businessadmin/businesssignup.php">
+            <Button class="btn btn-light">
+                Add your business
+            </Button>
+        </a>
+        <a class="" href="logout.php">
+            <Button class="btn btn-outline-light">
+                Logout
+            </Button>
+        </a>
+        </div>
+    </nav>
     <div class="container col-md-8">
-        <div align="center" class="mt-3">
+        <div align="center" class="mt-5">
             <h2> Select a business</h2>
         </div>
-        <div class="row">
+        <div class="row mt-4">
             <?php foreach ($businesses as $a) { ?>
                 <div class="col-md-4 text-dark">
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F3%2F37%2FLocation_of_Rho_Cassiopeiae.png%2F1200px-Location_of_Rho_Cassiopeiae.png&f=1&nofb=1" alt="Card image cap">
+                        <img class="card-img-top kyd-img-card " src="<?php echo $a['image'] ?>" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $a['name'] ?></h5>
                             <p class="card-text"><?php echo $a['description'] ?></p>
@@ -46,7 +61,17 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
                 </div>
             <?php } ?>
+            
         </div>
+        <?php 
+                if(count($businesses) == 0) {
+                    echo "
+                        <div align='center' class='text-secondary'>
+                        <h3 >No approved business in this location</h3>
+                        </div>
+                        ";
+                }
+            ?>
     </div>
 </body>
 

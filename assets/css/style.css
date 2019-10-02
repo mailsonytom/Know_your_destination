@@ -7,3 +7,11 @@ body
 	color: red;
 } */
 
+.business-img-cover {
+	height: 25em;
+	object-fit: cover;
+}
+.kyd-img-card {
+	height: 10em;
+	object-fit: cover;
+}

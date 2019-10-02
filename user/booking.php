@@ -38,11 +38,11 @@ if (!isset($_SESSION['user_id'])) {
             $business_id = $_GET['id'];
             $sql = "INSERT INTO reviews (title, description, business_id, location_id, user_id)
         VALUES ('$title','$description','$business_id', 0,'$user_id')";
-         if (mysqli_query($conn, $sql)) {
-            echo '<script type="text/javascript">
+            if (mysqli_query($conn, $sql)) {
+                echo '<script type="text/javascript">
                 window.location = window.location
                  </script>';
-        }
+            }
         }
     }
 }
@@ -61,75 +61,90 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-    <div class="container col-md-8">
-        <div align="center" class="mt-3">
-            <h2><?php echo $business[name] ?> </h2>
-        </div>
-        <div class="row mt-4">
-            <div class="col-md-8 mt-2 pr-3">
-                <img class="w-100" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F3%2F37%2FLocation_of_Rho_Cassiopeiae.png%2F1200px-Location_of_Rho_Cassiopeiae.png&f=1&nofb=1" alt="Card image cap">
-                <p>
-                    <?php echo $business[description] ?>
-                </p>
-                <hr>
-                <div class=" text-dark">
-                    <div class="card">
-                        <h5 class="card-header">Reviews</h5>
-                        <div class="card-body">
-                            <form action="" method="POST" id="review_form">
-                                <div align="left">
-                                    Write a review
-                                </div>
-                                <div class="form-group">
-                                    <!-- <label class="col-md-6 ">title:</label> -->
-                                    <input type="text" name="title" class="form-control" placeholder="Title">
+    <nav class="navbar navbar-light bg-info">
+        <span class="navbar-brand mb-0 h1 text-light">Know your destination</span>
+        <a class="ml-auto" href="logout.php">
+            <Button class="btn btn-outline-light">
+                Logout
+            </Button>
+        </a>
+    </nav>
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-md-9">
 
-                                </div>
 
-                                <div class="form-group">
-                                    <!-- <label class="col-md-6 ">description:</label> -->
-                                    <textarea name="description" class="form-control" form="review_form" placeholder="Description"> </textarea>
 
+
+                <div align="left" class="mt-3">
+                    <h2><?php echo $business[name] ?> </h2>
+                </div>
+                <div class="row mt-4 justify-content-md-center">
+                    <div class="col-md-7 mt-2 pr-3">
+                        <img class="w-100 business-img-cover" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F3%2F37%2FLocation_of_Rho_Cassiopeiae.png%2F1200px-Location_of_Rho_Cassiopeiae.png&f=1&nofb=1" alt="Card image cap">
+                        <p>
+                            <?php echo $business[description] ?>
+                        </p>
+                        <hr>
+                        <div class=" text-dark">
+                            <div class="card">
+                                <h5 class="card-header">Reviews</h5>
+                                <div class="card-body">
+                                    <form action="" method="POST" id="review_form">
+                                        <div align="left">
+                                            Write a review
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- <label class="col-md-6 ">title:</label> -->
+                                            <input type="text" name="title" class="form-control" placeholder="Title">
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <!-- <label class="col-md-6 ">description:</label> -->
+                                            <textarea name="description" class="form-control" form="review_form" placeholder="Description"> </textarea>
+
+                                        </div>
+                                        <div align="left">
+                                            <input type="Submit" value="Submit" class="btn  btn-secondary">
+                                        </div>
+                                    </form>
+                                    <hr>
+                                    <?php foreach ($reviews as $a) { ?>
+                                        <h5 class="card-title"><?php echo $a['title'] ?></h5>
+                                        <p class="card-text"><?php echo $a['description'] ?></p>
+                                        <div> (<?php echo $a['name'] ?>)</div>
+                                        <hr>
+                                    <?php } ?>
                                 </div>
-                                <div align="left">
-                                    <input type="Submit" value="Submit" class="btn  btn-secondary">
-                                </div>
-                            </form>
-                            <hr>
-                            <?php foreach ($reviews as $a) { ?>
-                                <h5 class="card-title"><?php echo $a['title'] ?></h5>
-                                <p class="card-text"><?php echo $a['description'] ?></p>
-                                <div> (<?php echo $a['name'] ?>)</div>
-                                <hr>
-                            <?php } ?>
+                            </div>
+
+
                         </div>
                     </div>
+                    <div class="col-md-5 mt-2 ">
+                        <form action="" method="POST" class="rounded bg-white p-5">
+                            <div align="left">
+                                <h2>Book now</h2>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-6 ">From date:</label>
+                                <input class="w-100" data-date-format="dd/mm/yyyy" id="from_datepicker" name="from_date">
 
+                            </div>
 
+                            <div class="form-group">
+                                <label class="col-md-6 ">To date:</label>
+                                <input class="w-100" data-date-format="dd/mm/yyyy" id="to_datepicker" name="to_date">
+
+                            </div>
+                            <div align="left">
+                                <input type="Submit" value="Submit" class="btn  btn-primary w-100">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-5">
-                <form action="" method="POST">
-                    <div align="left">
-                        <h2>Book now</h2>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-6 ">From date:</label>
-                        <input data-date-format="dd/mm/yyyy" id="from_datepicker" name="from_date">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-6 ">To date:</label>
-                        <input data-date-format="dd/mm/yyyy" id="to_datepicker" name="to_date">
-
-                    </div>
-                    <div align="left">
-                        <input type="Submit" value="Submit" class="btn  btn-secondary">
-                    </div>
-                </form>
-            </div>
-
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
