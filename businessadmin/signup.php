@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         VALUES ('$name', 'Busienss', '$owner_name', '$password', '$email', '$phone', '$address', 0, $category, $location)";
 		if (mysqli_query($conn, $sql)) {
 			echo '<script type="text/javascript">
-                    window.location = "businesssignin.php"
+                    window.location = "signin.php"
                     </script>';
 		} else {
 			echo "Error: " . $sql . "<br>" . $conn->error;
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<nav class="navbar navbar-light bg-info">
 		<span class="navbar-brand mb-0 h1 text-light">Know your destination</span>
 		<div class="ml-auto">
-			<a class="" href="businesssignin.php">
+			<a class="" href="signin.php">
 				<Button class="btn btn-outline-light">
 					Sign In
 				</Button>

@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <nav class="navbar navbar-light bg-info">
         <span class="navbar-brand mb-0 h1 text-light">Know your destination</span>
         <div class="ml-auto">
-        <a class="" href="businesssignup.php">
+        <a class="" href="signup.php">
             <Button class="btn btn-outline-light">
                 Sign Up
             </Button>
