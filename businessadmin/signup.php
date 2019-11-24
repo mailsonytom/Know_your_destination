@@ -48,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if ($flag == 0) {
 		echo "location id", $location;
 		move_uploaded_file($_FILES['image']['tmp_name'], $target);
-		$sql = "INSERT INTO business (name, description, owner_name, password, email, phone, address, approved, category_id, location_id) 
-        VALUES ('$name', 'Busienss', '$owner_name', '$password', '$email', '$phone', '$address', 0, $category, $location)";
+		$sql = "INSERT INTO business (name, description, owner_name, password, email, phone, address, approved, category_id, location_id, image) 
+        VALUES ('$name', 'Busienss', '$owner_name', '$password', '$email', '$phone', '$address', 0, $category, $location, '$target')";
 		if (mysqli_query($conn, $sql)) {
 			echo '<script type="text/javascript">
                     window.location = "signin.php"

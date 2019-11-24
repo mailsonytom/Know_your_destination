@@ -108,7 +108,7 @@ if (!isset($_SESSION['admin_user'])) {
                                 <td><?php echo $a['phone'] ?></td>
                                 <td><?php echo $a['location_name'] ?></td>
                                 <td>
-                                    <a href="dashboard.php?business_id=<?php echo $a['id']; ?>"><button class="btn btn-primary">Approve</button></a>
+                                    <a href="business.php?business_id=<?php echo $a['id']; ?>"><button class="btn btn-primary">Approve</button></a>
                                 </td>
                             </tr>
                         <?php } ?>
