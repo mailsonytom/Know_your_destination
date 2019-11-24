@@ -48,15 +48,23 @@ if (!isset($_SESSION['business_user'])) {
 </head>
 
 <body>
-<nav class="navbar navbar-light bg-info">
-        <span class="navbar-brand mb-0 h1 text-light"><?php echo$user['name'],' ( welcome, ',$user['owner_name'], ' )' ?></span>
-        <a class="ml-auto" href="logout.php">
-            <Button class="btn btn-outline-light">
-                Logout
-            </Button>
-        </a>
+    <nav class="navbar navbar-light bg-info">
+        <span class="navbar-brand mb-0 h1 text-light"><?php echo $user['name'], ' ( welcome, ', $user['owner_name'], ' )' ?></span>
+        <div class="ml-auto">
+            <a class="mr-2" href="request_location.php">
+                <Button class="btn btn-light">
+                    Request a location
+                </Button>
+            </a>
+
+            <a class="" href="logout.php">
+                <Button class="btn btn-outline-light">
+                    Logout
+                </Button>
+            </a>
+        </div>
     </nav>
-    
+
     <div class="container col-md-8">
         <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
             <li class="nav-item">
