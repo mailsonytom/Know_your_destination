@@ -37,7 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <nav class="navbar navbar-light bg-info">
         <span class="navbar-brand mb-0 h1 text-light">Know your destination</span>
         <div class="ml-auto">
-            <a class="mr-2" href="../businessadmin/businesssignup.php">
+        <a class="mr-2" href="../admin/">
+                <Button class="btn btn-light">
+                    Sign in as Admin
+                </Button>
+            </a>
+            <a class="mr-2" href="../businessadmin/">
                 <Button class="btn btn-light">
                     Add your business
                 </Button>

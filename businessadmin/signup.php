@@ -74,6 +74,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<nav class="navbar navbar-light bg-info">
 		<span class="navbar-brand mb-0 h1 text-light">Know your destination</span>
 		<div class="ml-auto">
+		<a class="mr-2" href="../admin/">
+                <Button class="btn btn-light">
+                    Sign in as Admin
+                </Button>
+			</a>
+			<a class="mr-2" href="../user/">
+                <Button class="btn btn-light">
+                    Sign in as User
+                </Button>
+            </a>
 			<a class="" href="signin.php">
 				<Button class="btn btn-outline-light">
 					Sign In

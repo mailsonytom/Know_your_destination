@@ -38,6 +38,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<title> Admin signin</title>
 </head>
 <body>
+<nav class="navbar navbar-light bg-info">
+        <span class="navbar-brand mb-0 h1 text-light">Know your destination</span>
+        <div class="ml-auto">
+        <a class="mr-2" href="../user/">
+                <Button class="btn btn-light">
+                    Sign in as User
+                </Button>
+            </a>
+            <a class="mr-2" href="../businessadmin/">
+                <Button class="btn btn-light">
+                    Sign in as Business
+                </Button>
+            </a>
+            
+        </div>
+    </nav>
 	<div class="container col-md-6 rounded mt-5 p-4 bg-white">
 		<form action="" method="POST">
 			<div align="center">
