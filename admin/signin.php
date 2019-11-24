@@ -9,23 +9,29 @@ $error_flag = 0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$username = $_POST['username'];
 	$password = $_POST['password'];
-	
-	$sql = "SELECT * FROM admin WHERE username = '$username'";
-	$result = mysqli_query($conn, $sql);
-	if ($row = mysqli_fetch_assoc($result)) {
-		echo "sfgs", $row['username'];
-		if (password_verify($password, $row['password'])) {
-			$_SESSION['admin_user'] = $row['id'];
-			 echo '<script type="text/javascript">
-                window.location = "business.php"
-                 </script>';
+
+	if(empty($username) || empty($password)) {
+		$error_flag = 1;
+		$error_text = "Fields shouldn't be empty";
+	}
+	if(!$error_flag) {
+
+		$sql = "SELECT * FROM admin WHERE username = '$username'";
+		$result = mysqli_query($conn, $sql);
+		if ($row = mysqli_fetch_assoc($result)) {
+			if (password_verify($password, $row['password'])) {
+				$_SESSION['admin_user'] = $row['id'];
+				 echo '<script type="text/javascript">
+					window.location = "business.php"
+					 </script>';
+			} else {
+				$error_flag = 1;
+				$error_text = "Invalid credentials.";
+			}
 		} else {
 			$error_flag = 1;
-			$error_text = "Wrong password.";
+			$error_text = "Invalid credentials.";
 		}
-	} else {
-		$error_flag = 1;
-		$error_text = "Wrong username.";
 	}
 }
 ?>

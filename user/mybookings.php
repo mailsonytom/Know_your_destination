@@ -78,10 +78,12 @@ if (!isset($_SESSION['user_id'])) {
                                 <td><?php echo $a['from_date'] ?></td>
                                 <td><?php echo $a['to_date'] ?></td>
                                 <td><?php
-                                    if($a['approved'])
-                                         {echo "Yes";}
-                                    else
-                                       {} echo "No";}
+                                    if($a['approved']){
+                                        echo "Yes";
+                                    } else { 
+                                        echo "No";
+                                    }
+                        }
                                         ?></td>
                                 
                             </tr>

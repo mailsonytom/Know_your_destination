@@ -25,12 +25,22 @@ if (!isset($_SESSION['user_id'])) {
             $to_date = $_POST['to_date'];
             $user_id = $_SESSION['user_id'];
             $business_id = $_GET['id'];
-            $sql = "INSERT INTO bookings (user_id, business_id, from_date, to_date, approved)
-        VALUES ('$user_id', '$business_id', '$from_date', '$to_date', 0)";
-            if (mysqli_query($conn, $sql)) {
-                echo '<script type="text/javascript">
-                window.location = "mybookings.php"
-                 </script>';
+            $from_date_timestamp = strtotime($from_date);
+            $to_date_timestamp = strtotime($to_date);
+            $flag = 0;
+            $error = "";
+            if ($to_date_timestamp < $from_date_timestamp) {
+                $flag = 1;
+                $error = "Can't book. Check dates";
+            }
+            if (!$flag) {
+                $sql = "INSERT INTO bookings (user_id, business_id, from_date, to_date, approved)
+            VALUES ('$user_id', '$business_id', '$from_date', '$to_date', 0)";
+                if (mysqli_query($conn, $sql)) {
+                    echo '<script type="text/javascript">
+                    window.location = "mybookings.php"
+                     </script>';
+                }
             }
         }
         if (isset($_POST['title'])) {
@@ -98,7 +108,7 @@ if (!isset($_SESSION['user_id'])) {
                                         </div>
                                         <div class="form-group">
                                             <!-- <label class="col-md-6 ">title:</label> -->
-                                            <input type="text" name="title" class="form-control" placeholder="Title">
+                                            <input type="text"  name="title" class="form-control" placeholder="Title">
 
                                         </div>
 
@@ -131,15 +141,23 @@ if (!isset($_SESSION['user_id'])) {
                             </div>
                             <div class="form-group">
                                 <label class="col-md-6 ">From date:</label>
-                                <input class="w-100" data-date-format="dd/mm/yyyy" id="from_datepicker" name="from_date">
+                                <input class="w-100"  data-date-format="yyyy/mm/dd" id="from_datepicker" name="from_date">
 
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-6 ">To date:</label>
-                                <input class="w-100" data-date-format="dd/mm/yyyy" id="to_datepicker" name="to_date">
+                                <input class="w-100" data-date-format="yyyy/mm/dd" id="to_datepicker" name="to_date">
 
                             </div>
+                            <?php
+                            if ($flag) { ?>
+                                <div align="center" class=" text-danger">
+                                    <?php echo $error ?>
+                                </div>
+                            <?php
+                            }
+                            ?>
                             <div align="left">
                                 <input type="Submit" value="Submit" class="btn  btn-primary w-100">
                             </div>

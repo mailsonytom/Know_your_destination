@@ -16,7 +16,7 @@ if (!isset($_SESSION['business_user'])) {
         }
     }
     $business_user_id = $_SESSION['business_user'];
-    $sql = "SELECT B.id, from_date,to_date, approved, name from bookings B INNER JOIN users U on B.user_id =  U.id WHERE B.business_id=$business_user_id  ";
+    $sql = "SELECT B.id, from_date,to_date, approved, name, U.phone from bookings B INNER JOIN users U on B.user_id =  U.id WHERE B.business_id=$business_user_id  ";
 
     $result = mysqli_query($conn, $sql);
     while ($booking = mysqli_fetch_assoc($result)) {
@@ -51,11 +51,7 @@ if (!isset($_SESSION['business_user'])) {
     <nav class="navbar navbar-light bg-info">
         <span class="navbar-brand mb-0 h1 text-light"><?php echo $user['name'], ' ( welcome, ', $user['owner_name'], ' )' ?></span>
         <div class="ml-auto">
-            <a class="mr-2" href="request_location.php">
-                <Button class="btn btn-light">
-                    Request a location
-                </Button>
-            </a>
+           
 
             <a class="" href="logout.php">
                 <Button class="btn btn-outline-light">
@@ -80,7 +76,6 @@ if (!isset($_SESSION['business_user'])) {
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
-                            <th scope="col">Name</th>
                             <th scope="col">From</th>
                             <th scope="col">To</th>
                             <th scope="col">Phone Number</th>
@@ -94,11 +89,10 @@ if (!isset($_SESSION['business_user'])) {
                         <?php foreach ($approved_bookings as $a) { ?>
                             <tr>
                                 <td><?php echo $a['name'] ?></td>
-                                <td><?php echo $a['id'] ?></td>
                                 <td><?php echo $a['to_date'] ?></td>
                                 <td><?php echo $a['from_date'] ?></td>
                                 <td>
-                                    //
+                                    <?php echo $a['phone'] ?>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -114,10 +108,10 @@ if (!isset($_SESSION['business_user'])) {
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">From</th>
+                            <th scope="col">To</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,7 +122,7 @@ if (!isset($_SESSION['business_user'])) {
                                 <td><?php echo $a['id'] ?></td>
                                 <td><?php echo $a['from_date'] ?></td>
                                 <td>
-                                    <a href="dashboard.php?id=<?php echo $a['id']; ?>"><button>Approve</button></a>
+                                    <a href="dashboard.php?id=<?php echo $a['id']; ?>"><button class="btn btn-primary">Approve</button></a>
                                 </td>
                             </tr>
                         <?php } ?>

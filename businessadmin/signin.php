@@ -11,28 +11,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	$username = $_POST['username'];
 	$password = $_POST['password'];
-	
-	$sql = "SELECT * FROM business WHERE email = '$username'";
-	$result = mysqli_query($conn, $sql);
-	if ($row = mysqli_fetch_assoc($result)) {
-		if(!$row['approved']) {
-			$error_flag = 1;
-			$error_text = "Busness not approved. Contact Admin.";
-		}
-		else if (password_verify($password, $row['password'])) {
-			$_SESSION['business_user'] = $row['id'];
-			echo "success" , $_SESSION['business_user'];
-			 echo '<script type="text/javascript">
-                window.location = "dashboard.php"
-                 </script>';
+	if (
+		empty($username) || empty($password) 
+	) {
+		$error_flag = 1;
+		$error_text = "Fields can't be empty";
+	} else if (!filter_var($username, FILTER_VALIDATE_EMAIL, $username)) {
+		$error_flag = 1;
+		$error_text = "Not a valid email";
+	}
+	if (!$error_flag) {
+		$sql = "SELECT * FROM business WHERE email = '$username'";
+		$result = mysqli_query($conn, $sql);
+		if ($row = mysqli_fetch_assoc($result)) {
+			if(!$row['approved']) {
+				$error_flag = 1;
+				$error_text = "Busness not approved. Contact Admin.";
+			}
+			else if (password_verify($password, $row['password'])) {
+				$_SESSION['business_user'] = $row['id'];
+				echo "success" , $_SESSION['business_user'];
+				 echo '<script type="text/javascript">
+					window.location = "dashboard.php"
+					 </script>';
+			} else {
+				$error_flag = 1;
+				$error_text = "Invalid credentials.";
+			}
 		} else {
 			$error_flag = 1;
-			$error_text = "Wrong password.";
+			$error_text = "Invalid credentials.";
 		}
-	} else {
-		$error_flag = 1;
-		$error_text = "Wrong username.";
 	}
+	
 }
 ?>
 <!DOCTYPE html>
@@ -77,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			</div>
 			<div class="form-group">
 				<label class="col-md-6 ">password:</label>
-				<input type="text" name="password" class="form-control">
+				<input  type="password" name="password" class="form-control">
 			</div>
 			<?php
 			if ($error_flag) { ?>

@@ -6,13 +6,12 @@ if (!isset($_SESSION['user_id'])) {
                 window.location = "signin.php"
                  </script>';
 } else {
-    function test_input($data)
+    function test_input($data, $conn)
     {
-        // echo "test_input", $data;
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
-        // $data = mysql_escape_string($data);
+        $data = mysqli_real_escape_string($conn, $data);
         return $data;
     }
 
@@ -46,7 +45,7 @@ if (!isset($_SESSION['user_id'])) {
             $error = "Only letters and white space allowed";
         }
         if ($flag == 0) {
-            $description = test_input($description);
+            $description = test_input($description, $conn);
             move_uploaded_file($_FILES['image']['tmp_name'], $target);
             $sql = "INSERT INTO locations (name, description, approved, requested_user, image) 
         VALUES ('$name', '$description', 0, $user, '$target')";

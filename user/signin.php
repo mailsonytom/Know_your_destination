@@ -8,18 +8,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $sql = "SELECT * FROM users WHERE username = '$username'";
     $result = mysqli_query($conn, $sql);
-    if ($row = mysqli_fetch_assoc($result)) {
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['user_id'] = $row['id'];
-            echo '<script type="text/javascript">
-                window.location = "locations.php"
-                 </script>';
-            echo "Success";
+    $flag = 0;
+    $error = "";
+    if (
+        empty($username) || empty($password)
+    ) {
+        $flag = 1;
+        $error = "Fields can't be empty";
+    }
+    if (!$flag) {
+        if ($row = mysqli_fetch_assoc($result)) {
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['user_id'] = $row['id'];
+                echo '<script type="text/javascript">
+                    window.location = "locations.php"
+                     </script>';
+                echo "Success";
+            } else {
+                $flag = 1;
+                $error = "Check your credentials";
+            }
         } else {
-            echo "Wrong password. <a href='signin.html'>Click here to try again.</a>";
+            $flag = 1;
+                $error = "Check your credentials";
         }
-    } else {
-        echo "Wrong username. <a href='signin.html'>Click here to try again.</a>";
     }
 }
 ?>
@@ -37,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <nav class="navbar navbar-light bg-info">
         <span class="navbar-brand mb-0 h1 text-light">Know your destination</span>
         <div class="ml-auto">
-        <a class="mr-2" href="../admin/">
+            <a class="mr-2" href="../admin/">
                 <Button class="btn btn-light">
                     Sign in as Admin
                 </Button>
@@ -68,6 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label class="col-md-6 ">Password:</label>
                 <input type="password" name="password" class="form-control">
             </div>
+            <?php
+            if ($flag) { ?>
+                <div align="center" class=" text-danger">
+                    <?php echo $error ?>
+                </div>
+            <?php
+            }
+            ?>
             <div align="center">
                 <input type="Submit" value="Submit" class="btn  btn-primary w-100">
             </div>
