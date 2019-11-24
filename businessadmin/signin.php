@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<h2> Business Sign-in</h2>
 			</div>
 			<div class="form-group mt-5">
-				<label class="col-md-6 ">Username:</label>
+				<label class="col-md-6 ">Email:</label>
 				<input type="text" name="username" class="form-control">
 			</div>
 			<div class="form-group">
