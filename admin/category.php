@@ -84,7 +84,9 @@ if (!isset($_SESSION['admin_user'])) {
                 </div>
                 <div class="mt-3">
                     <?php foreach ($categories as $a) { ?>
-                        <span class="badge badge-warning p-3 m-2"><?php echo $a['name'] ?></span>
+                        <span class="badge badge-warning p-3 m-2"><?php echo $a['name'] ?>
+                        <!-- <span class="badge badge-light">X</span> -->
+                    </span>
                     <?php } ?>
                 </div>
             </div>

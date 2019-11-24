@@ -28,7 +28,9 @@ if (!isset($_SESSION['user_id'])) {
             $sql = "INSERT INTO bookings (user_id, business_id, from_date, to_date, approved)
         VALUES ('$user_id', '$business_id', '$from_date', '$to_date', 0)";
             if (mysqli_query($conn, $sql)) {
-                echo "success";
+                echo '<script type="text/javascript">
+                window.location = "mybookings.php"
+                 </script>';
             }
         }
         if (isset($_POST['title'])) {
@@ -81,7 +83,7 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
                 <div class="row mt-4 justify-content-md-center">
                     <div class="col-md-7 mt-2 pr-3">
-                        <img class="w-100 business-img-cover" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F3%2F37%2FLocation_of_Rho_Cassiopeiae.png%2F1200px-Location_of_Rho_Cassiopeiae.png&f=1&nofb=1" alt="Card image cap">
+                        <img class="w-100 business-img-cover" src="<?php echo $business['image'] ?>" alt="Card image cap">
                         <p>
                             <?php echo $business[description] ?>
                         </p>
@@ -174,6 +176,7 @@ if (!isset($_SESSION['user_id'])) {
             daysOfWeekHighlighted: "6,0",
             autoclose: true,
             todayHighlight: true,
+            startDate: '+1d'
         });
         $('#to_datepicker').datepicker({
             weekStart: 1,

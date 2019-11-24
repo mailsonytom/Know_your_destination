@@ -3,7 +3,7 @@
 session_start();
 if (!isset($_SESSION['business_user'])) {
     echo '<script type="text/javascript">
-                window.location = "businesssignin.php"
+                window.location = "signin.php"
                  </script>';
 } else {
     if (isset($_GET['id'])) {

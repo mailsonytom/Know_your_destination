@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo '<script type="text/javascript">
                 window.location = "locations.php"
                  </script>';
-                 echo "Success";
+            echo "Success";
         } else {
             echo "Wrong password. <a href='signin.html'>Click here to try again.</a>";
         }
@@ -26,41 +26,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-	<title>signin</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <title>signin</title>
 </head>
+
 <body>
-<nav class="navbar navbar-light bg-info">
+    <nav class="navbar navbar-light bg-info">
         <span class="navbar-brand mb-0 h1 text-light">Know your destination</span>
         <div class="ml-auto">
-        <a class="" href="signup.php">
-            <Button class="btn btn-outline-light">
-                Sign Up
-            </Button>
-        </a>
+            <a class="mr-2" href="../businessadmin/businesssignup.php">
+                <Button class="btn btn-light">
+                    Add your business
+                </Button>
+            </a>
+            <a class="" href="signup.php">
+                <Button class="btn btn-outline-light">
+                    Sign Up
+                </Button>
+            </a>
         </div>
     </nav>
-	<div class="container col-md-6 rounded mt-5 p-4 bg-white">
-		<form action="" method="POST">
-			<div align="center">
-				<h2>User Signin</h2>
-			</div>
-		<div class="form-group">
-			<label class="col-md-6 ">Username:</label>
-				<input type="text" name="username" class="form-control">
-		</div>
-		
-		<div class="form-group">
-			<label class="col-md-6 ">Password:</label>
-			<input type="password" name="password" class="form-control">
-		</div>
-		<div align="center">	
-		   <input type="Submit" value="Submit" class="btn  btn-primary w-100">
-	    </div>
-	    </form>
-	</div>
-	
+    <div class="container col-md-6 rounded mt-5 p-4 bg-white">
+        <form action="" method="POST">
+            <div align="center">
+                <h2>User Signin</h2>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 ">Username:</label>
+                <input type="text" name="username" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-6 ">Password:</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+            <div align="center">
+                <input type="Submit" value="Submit" class="btn  btn-primary w-100">
+            </div>
+        </form>
+    </div>
+
 </body>
+
 </html>

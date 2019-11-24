@@ -32,9 +32,9 @@ if (!isset($_SESSION['user_id'])) {
 <nav class="navbar navbar-light bg-info">
         <span class="navbar-brand mb-0 h1 text-light">Know your destination</span>
         <div class="ml-auto">
-        <a class="mr-2" href="../businessadmin/businesssignup.php">
+        <a class="mr-2" href="./mybookings.php">
             <Button class="btn btn-light">
-                Add your business
+                My bookings
             </Button>
         </a>
         <a class="" href="logout.php">

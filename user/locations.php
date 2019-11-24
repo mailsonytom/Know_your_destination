@@ -34,6 +34,11 @@ if (!isset($_SESSION['user_id'])) {
                 Request a location
             </Button>
         </a>
+        <a class="mr-2" href="./mybookings.php">
+            <Button class="btn btn-light">
+                My bookings
+            </Button>
+        </a>
         <a class="" href="logout.php">
             <Button class="btn btn-outline-light">
                 Logout
