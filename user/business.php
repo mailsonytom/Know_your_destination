@@ -54,9 +54,10 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top kyd-img-card " src="<?php echo $a['image'] ?>" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $a['name'] ?></h5>
+                            <h5 class="card-title"><?php echo $a['name'] ?> </h5>
                             <p class="card-text"><?php echo $a['description'] ?></p>
                             <a href="booking.php?id=<?php echo $a[id] ?>" class="btn btn-primary">Book now</a>
+                            <span class="float-right font-weight-bold">&#x20B9; <?php echo $a['price'] ?></span>
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,7 @@ if (!isset($_SESSION['user_id'])) {
         $result = mysqli_query($conn, $sql);
         if ($aBusiness =  mysqli_fetch_assoc($result)) {
             $business = $aBusiness;
+            $_SESSION["price"]=$aBusiness['price'];
         }
         $sql = "SELECT * from reviews R INNER JOIN users U on R.user_id = U.id WHERE R.business_id = $index";
         $result = mysqli_query($conn, $sql);
@@ -108,7 +109,7 @@ if (!isset($_SESSION['user_id'])) {
                                         </div>
                                         <div class="form-group">
                                             <!-- <label class="col-md-6 ">title:</label> -->
-                                            <input type="text"  name="title" class="form-control" placeholder="Title">
+                                            <input type="text" name="title" class="form-control" placeholder="Title">
 
                                         </div>
 
@@ -141,13 +142,19 @@ if (!isset($_SESSION['user_id'])) {
                             </div>
                             <div class="form-group">
                                 <label class="col-md-6 ">From date:</label>
-                                <input class="w-100"  data-date-format="yyyy/mm/dd" id="from_datepicker" name="from_date">
+                                <input class="w-100" data-date-format="yyyy/mm/dd" id="from_datepicker" name="from_date">
 
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-6 ">To date:</label>
                                 <input class="w-100" data-date-format="yyyy/mm/dd" id="to_datepicker" name="to_date">
+
+                            </div>
+                            <div id="price-title" class="text-secondary font-weight-bold">
+                                
+                            </div>
+                            <div id="price-div" class="mb-4">
 
                             </div>
                             <?php
@@ -203,6 +210,28 @@ if (!isset($_SESSION['user_id'])) {
             todayHighlight: true,
         });
         $('#datepicker').datepicker("setDate", new Date());
+        var date_diff_indays = function(date1, date2) {
+            dt1 = new Date(date1);
+            dt2 = new Date(date2);
+            return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
+        }
+        $('#from_datepicker').focusout(function() {
+            setTimeout(calculatePrice, 1000)
+        })
+        $('#to_datepicker').focusout(function() {
+            setTimeout(calculatePrice, 1000)
+        })
+        var calculatePrice = function() {
+                var fromDate = $('#from_datepicker').val()
+                var toDate = $('#to_datepicker').val();
+                var difference = date_diff_indays(new Date(fromDate), new Date(toDate));
+                if (difference && difference > 0) {
+                    var price = <?php echo $_SESSION['price'] ?>;
+                    var content = "<h1>hello</h1>"
+                    $('#price-title').text('Checkout Price');
+                    $('#price-div').text(difference + " x " + price + " = " + difference*price );
+                }
+            }
     </script>
 </body>
 
