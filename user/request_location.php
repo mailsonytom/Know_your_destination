@@ -98,8 +98,8 @@ if (!isset($_SESSION['user_id'])) {
 
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li class=""><a href="#intro">Home</a></li>
-                    <li><a href="locations1.php">Locations</a></li>
+                    <li class=""><a href="./index1.php">Home</a></li>
+                    <li><a href="locations.php">Locations</a></li>
                     <li><a href="./logout.php">Logout</a></li>
 
                 </ul>

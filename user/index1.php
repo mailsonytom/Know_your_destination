@@ -60,8 +60,8 @@ session_start();
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="./locations1.php">Locations</a></li>
-          <li><a href="./business.php">Businesses</a></li>
+          <li><a href="./locations_guest.php">Locations</a></li>
+          <!-- <li><a href="./business.php">Businesses</a></li> -->
           <li><a href="#contact">Contact</a></li>
           <li><a href="./signin.php">Login</a></li>
 
@@ -156,6 +156,10 @@ session_start();
           </div>
                 
             <?php } ?>
+            <div class="m-auto">
+
+              <a href="./locations_guest.php" class="kyd-btn-get-started scrollto">Explore more</a>
+            </div>
 
         </div>
 
@@ -171,7 +175,7 @@ session_start();
       <div class="container text-center">
         <h3>Login to book</h3>
         <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <a class="cta-btn" href="#">Login Now</a>
+        <a class="cta-btn" href="./signin.php">Login Now</a>
       </div>
     </section><!-- #call-to-action -->
 

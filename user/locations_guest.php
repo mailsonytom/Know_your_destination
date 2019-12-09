@@ -1,66 +1,69 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    echo '<script type="text/javascript">
-                window.location = "signin.php"
-                 </script>';
-} else {
 
-    $business_user_id = $_SESSION['business_user'];
+
     $sql = "SELECT * from locations WHERE approved = 1";
 
     $result = mysqli_query($conn, $sql);
     while ($aLocation = mysqli_fetch_assoc($result)) {
         $locations[] = $aLocation;
     }
-}
+    $sql = "SELECT * from business B WHERE B.approved = 1 LIMIT 3";
+    $result = mysqli_query($conn, $sql);
+    while ($aBusiness =  mysqli_fetch_assoc($result)) {
+        $businesses[] = $aBusiness;
+    }
 ?>
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet" />
-        <title>Locations</title>
+  <meta charset="utf-8">
+  <title>Locations</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+  <!-- Bootstrap CSS File -->
+  <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Bootstrap CSS File -->
-        <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Libraries CSS Files -->
+  <link href="../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-        <!-- Libraries CSS Files -->
-        <link href="../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
-        <link href="../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-        <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <!-- Main Stylesheet File -->
+  <link href="../assets/css/theme.css" rel="stylesheet">
 
-        <!-- Main Stylesheet File -->
-        <link href="../assets/css/theme.css" rel="stylesheet">
+ 
 </head>
 
 <body>
-<header id="header" class=" header-black">
+
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header" class=" header-black">
     <div class="container-fluid">
 
       <div id="logo" class="pull-left">
-        <h1><a href="./index1.php" class="scrollto">Know Your Destination</a></h1>
+        <h1><a href="#intro" class="scrollto">Know Your Destination</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class=""><a href="./index1.php">Home</a></li>
-          <li><a href="./request_location.php"> Request a Location</a></li>
+          <li class="menu-active"><a href="./index1.php">Home</a></li>
+          <li><a href="request_location.php">Request a location</a></li>
           <li><a  href="./mybookings.php">My bookings</a></li>
           
-          <li><a href="./logout.php">Logout</a></li>
+          <li><a href="./signin.php">Login</a></li>
 
         </ul>
       </nav><!-- #nav-menu-container -->
@@ -82,11 +85,8 @@ if (!isset($_SESSION['user_id'])) {
         </header>
 
         <div class="row about-cols">
-
-
-
         <?php foreach ($locations as $a) { ?>
-          <a href="business.php?id=<?php echo $a['id'] ?>">
+          <a href="business_guest.php?id=<?php echo $a['id'] ?>">
           <div class="col-md-4 wow fadeInUp">
             <div class="about-col">
               <div class="img">
@@ -104,21 +104,16 @@ if (!isset($_SESSION['user_id'])) {
                 
             <?php } ?>
 
-
         </div>
-        <?php 
-                if(count($locations) == 0) {
-                    echo "
-                        <div align='center' class='text-secondary'>
-                        <h3 >No approved locations in this location</h3>
-                        </div>
-                        ";
-                }
-            ?>
-    </div>
-    </section>
+
+      </div>
+    </section><!-- #about -->
+
   </main>
 
+  <!--==========================
+    Footer
+  ============================-->
   <footer id="footer">
     <div class="footer-top">
       <div class="container">
@@ -212,7 +207,5 @@ if (!isset($_SESSION['user_id'])) {
   <!-- Template Main Javascript File -->
   <script src="../assets/js/main.js"></script>
 
-
 </body>
-
 </html>

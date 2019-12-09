@@ -119,7 +119,7 @@ if (!isset($_SESSION['user_id'])) {
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li class="menu-active"><a href="./index1.php">Home</a></li>
-                    <li><a href="./locations.php">Locations</a></li>
+                    <li><a href="./locations_guest.php">Locations</a></li>
 
                     <li><a href="./logout.php">Logout</a></li>
 
@@ -141,11 +141,11 @@ if (!isset($_SESSION['user_id'])) {
 
 
 
-                        <div align="left" class="mt-3">
-                            <h2><?php echo $business['name'] ?> </h2>
-                        </div>
-                        <div class="row mt-4 justify-content-md-center">
-                            <div class="col-md-7 mt-2 pr-3">
+                        <div class="row mt-6 justify-content-md-center">
+                            <div align="left" class="mt-3 col-md-8">
+                                <h2><?php echo $business['name'] ?> </h2>
+                            </div>
+                            <div class="col-md-8 mt-2 pr-3">
                                 <img class="w-100 business-img-cover" src="<?php echo $business['image'] ?>" alt="Card image cap">
                                 <p>
                                     <?php echo $business['description'] ?>
@@ -156,23 +156,10 @@ if (!isset($_SESSION['user_id'])) {
                                         <h5 class="card-header">Reviews</h5>
                                         <div class="card-body">
                                             <form action="" method="POST" id="review_form">
-                                                <div align="left">
-                                                    Write a review
+                                                <div align="left" class="font-weight-bold">
+                                                    Login to write review.
                                                 </div>
-                                                <div class="form-group">
-                                                    <!-- <label class="col-md-6 ">title:</label> -->
-                                                    <input type="text" name="title" class="form-control" placeholder="Title">
-
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <!-- <label class="col-md-6 ">description:</label> -->
-                                                    <textarea name="description" class="form-control" form="review_form" placeholder="Description"> </textarea>
-
-                                                </div>
-                                                <div align="left">
-                                                    <input type="Submit" value="Submit" class="btn  btn-secondary">
-                                                </div>
+                                                
                                             </form>
                                             <hr>
                                             <?php foreach ($reviews as $a) { ?>
@@ -187,42 +174,7 @@ if (!isset($_SESSION['user_id'])) {
 
                                 </div>
                             </div>
-                            <div class="col-md-5 mt-2 ">
-                                <form action="" method="POST" class="rounded bg-white p-5">
-                                    <div align="left">
-                                        <h2>Book now</h2>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-6 ">From date:</label>
-                                        <input class="w-100" data-date-format="yyyy/mm/dd" id="from_datepicker" name="from_date">
-
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-6 ">To date:</label>
-                                        <input class="w-100" data-date-format="yyyy/mm/dd" id="to_datepicker" name="to_date">
-
-                                    </div>
-                                    <input type="hidden" id="checkout_price" name="input_price">
-                                    <div id="price-title" class="text-secondary font-weight-bold">
-
-                                    </div>
-                                    <div id="price-div" class="mb-4">
-
-                                    </div>
-                                    <?php
-                                    if ($flag) { ?>
-                                        <div align="center" class=" text-danger">
-                                            <?php echo $error ?>
-                                        </div>
-                                    <?php
-                                    }
-                                    ?>
-                                    <div align="left">
-                                        <input type="Submit" value="Submit" class="btn  btn-primary w-100">
-                                    </div>
-                                </form>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

@@ -2,53 +2,44 @@
 <?php
 session_start();
 
-
-    $sql = "SELECT * from locations WHERE approved = 1";
-
-    $result = mysqli_query($conn, $sql);
-    while ($aLocation = mysqli_fetch_assoc($result)) {
-        $locations[] = $aLocation;
-    }
-    $sql = "SELECT * from business B WHERE B.approved = 1 LIMIT 3";
-    $result = mysqli_query($conn, $sql);
-    while ($aBusiness =  mysqli_fetch_assoc($result)) {
-        $businesses[] = $aBusiness;
+    if (isset($_GET['id'])) {
+        $index = $_GET['id'];
+        $sql = "SELECT * from business B WHERE B.location_id = $index AND B.approved = 1";
+        $result = mysqli_query($conn, $sql);
+        while ($aBusiness =  mysqli_fetch_assoc($result)) {
+            $businesses[] = $aBusiness;
+        }
     }
 ?>
-<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>Locations</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Business signup</title>
+
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
-  <!-- Bootstrap CSS File -->
-  <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap CSS File -->
+<link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Libraries CSS Files -->
-  <link href="../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<!-- Libraries CSS Files -->
+<link href="../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
+<link href="../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+<link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-  <!-- Main Stylesheet File -->
-  <link href="../assets/css/theme.css" rel="stylesheet">
-
- 
+<!-- Main Stylesheet File -->
+<link href="../assets/css/theme.css" rel="stylesheet">
 </head>
 
 <body>
-
-  <!--==========================
-    Header
-  ============================-->
-  <header id="header" class=" header-black">
+<header id="header" class=" header-black">
     <div class="container-fluid">
 
       <div id="logo" class="pull-left">
@@ -59,9 +50,9 @@ session_start();
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="./index1.php">Home</a></li>
-          <li><a href="request_location.php">Request a location</a></li>
-          <li><a  href="./mybookings.php">My bookings</a></li>
+          <li class=""><a href="./index1.php">Home</a></li>
+          <li><a href="locations_guest.php">Locations</a></li>
+          <!-- <li><a  href="./mybookings.php">My bookings</a></li> -->
           
           <li><a href="./logout.php">Logout</a></li>
 
@@ -69,49 +60,49 @@ session_start();
       </nav><!-- #nav-menu-container -->
     </div>
   </header><!-- #header -->
-
-
   <main id="main">
-
-    <!--==========================
-      About Us Section
-    ============================-->
-    <section id="about" class="mt-5">
-      <div class="container">
-
-        <header class="section-header">
-          <h3>Locations</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <section id="about"  class="section-bg mt-5" >
+    <div class="container col-md-8">
+    <header class="section-header">
+          <h3 class="section-title">Businesses</h3>
+          <p>Select a business to book.</p>
         </header>
 
-        <div class="row about-cols">
-        <?php foreach ($locations as $a) { ?>
-          <a href="business.php?id=<?php echo $a[id] ?>">
+        <div class="row mt-4">
+            <?php foreach ($businesses as $a) { ?>
+                <a href="booking_guest.php?id=<?php echo $a['id'] ?>">
           <div class="col-md-4 wow fadeInUp">
             <div class="about-col">
               <div class="img">
                 <img src="<?php echo $a['image'] ?>" alt="" class="img-fluid">
-                <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+                <!-- <div class="icon"><i class="ion-ios-speedometer-outline"></i></div> -->
               </div>
               <h2 class="title"><a href="#"><?php echo $a['name'] ?></a></h2>
               <p class="text-center">
               <?php echo $a['description'] ?>
+              <div class=" text-center font-weight-bold">&#x20B9; <?php echo $a['price'] ?></div>
+
               </p>
             </div>
           </div>
           </a>
-          
-                
+               
             <?php } ?>
-
+            
         </div>
-
-      </div>
-    </section><!-- #about -->
-
+        <?php 
+                if(count($businesses) == 0) {
+                    echo "
+                        <div align='center' class='text-secondary'>
+                        <h3 >No approved business in this location</h3>
+                        </div>
+                        ";
+                }
+            ?>
+    </div>
+  </section>
   </main>
-
-  <!--==========================
+   <!--==========================
     Footer
   ============================-->
   <footer id="footer">
@@ -182,30 +173,15 @@ session_start();
       </div>
     </div>
   </footer><!-- #footer -->
-
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <!-- Uncomment below i you want to use a preloader -->
-  <!-- <div id="preloader"></div> -->
-
-  <!-- JavaScript Libraries -->
   <script src="../assets/lib/jquery/jquery.min.js"></script>
   <script src="../assets/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="../assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/lib/easing/easing.min.js"></script>
-  <script src="../assets/lib/superfish/hoverIntent.js"></script>
-  <script src="../assets/lib/superfish/superfish.min.js"></script>
   <script src="../assets/lib/wow/wow.min.js"></script>
-  <script src="../assets/lib/waypoints/waypoints.min.js"></script>
   <script src="../assets/lib/counterup/counterup.min.js"></script>
-  <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="../assets/lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="../assets/lib/lightbox/js/lightbox.min.js"></script>
-  <script src="../assets/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="../assets/contactform/contactform.js"></script>
 
-  <!-- Template Main Javascript File -->
+
+
   <script src="../assets/js/main.js"></script>
 
 </body>
+
 </html>

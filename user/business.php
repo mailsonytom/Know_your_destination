@@ -55,8 +55,8 @@ if (!isset($_SESSION['user_id'])) {
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class=""><a href="#intro">Home</a></li>
-          <li><a href="locations1.php">Locations</a></li>
+          <li class=""><a href="./index1.php">Home</a></li>
+          <li><a href="locations.php">Locations</a></li>
           <li><a  href="./mybookings.php">My bookings</a></li>
           
           <li><a href="./logout.php">Logout</a></li>
@@ -75,7 +75,7 @@ if (!isset($_SESSION['user_id'])) {
 
         <div class="row mt-4">
             <?php foreach ($businesses as $a) { ?>
-                <a href="booking.php?id=<?php echo $a[id] ?>">
+                <a href="booking.php?id=<?php echo $a['id'] ?>">
           <div class="col-md-4 wow fadeInUp">
             <div class="about-col">
               <div class="img">

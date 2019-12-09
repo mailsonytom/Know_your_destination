@@ -1,5 +1,5 @@
 <?php
 echo '<script type="text/javascript">
-    window.location = "signin.php"
+    window.location = "index1.php"
     </script>';
 ?>
