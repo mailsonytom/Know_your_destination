@@ -42,93 +42,85 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		empty($name) || empty($email) || empty($password) || empty($phone)
 		|| empty($location) || empty($owner_name) || empty($category)
 		|| empty($price) || empty($description)
-		) {
-			$error = "Please fill in all the details";
-			$flag = 1;
-		}
-		else {
-
-		
-		
+	) {
+		$error = "Please fill in all the details";
+		$flag = 1;
+	} else {
 		$name = test_input($name, $conn);
 		// check if name only contains letters and whitespace
 		if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
 			$flag = 1;
 			$error = "Only letters and white space allowed for business name";
 		}
-		
+
 		$email = test_input($email, $conn);
 		// check if email is valid
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL, $email)) {
 			$flag = 1;
 			$error = "Wrong email format";
 		}
-		
+
 		$phone = test_input($phone, $conn);
 		// check for valid phone number
 		if (!preg_match("/^[1-9][0-9]{9}$/", $phone)) {
 			$flag = 1;
 			$error = "Wrong phone number format";
 		}
-		
+
 		if ($password != $re_password) {
 			$flag = 1;
 			$error = "Passwords are not matching";
-			echo "inside post empty", $_POST['password']," hello ", $_POST['re_password'];
+			echo "inside post empty", $_POST['password'], " hello ", $_POST['re_password'];
 		}
-		
+
 		$address = test_input($address, $conn);
-		
+
 		$owner_name = test_input($owner_name, $conn);
 		if (!preg_match("/^[a-zA-Z ]*$/", $owner_name)) {
 			$flag = 1;
 			$error = "Only letters and white space allowed for owner name";
 		}
-		
+
 		$price = test_input($price, $conn);
 		if (!preg_match("/^[1-9][0-9]*$/", $price)) {
 			$flag = 1;
 			$error = "Only digits are allowed for price";
 		}
-		
+
 		$description = test_input($description, $conn);
 
 
-	if($flag == 0) {
+		if ($flag == 0) {
+			$extension = end(explode(".", $image));
+			$newfilename = $name . "." . $extension;
+			$target = "../images/business/" . $newfilename;
+			$select_query = "SELECT email FROM business";
+			$result = mysqli_query($conn, $select_query);
 
-	
-	$extension = end(explode(".", $image));
-	$newfilename = $name . "." . $extension;
-	$target = "../images/business/" . $newfilename;
-
-	$select_query = "SELECT email FROM business";
-	$result = mysqli_query($conn, $select_query);
-
-	while ($row = mysqli_fetch_assoc($result)) {
-		if ($row['email'] == $email) {
-			$error = "Email already exist";
-			$flag = 1;
-			echo "error";
-		} else if ($row['name'] == $name) {
-			$error = "Business already exist";
-			$flag = 1;
-		}
-	}
-	if ($flag == 0) {
-		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-		move_uploaded_file($_FILES['image']['tmp_name'], $target);
-		$sql = "INSERT INTO business (name, description, owner_name, password, email, phone, address, approved, category_id, location_id, image, price) 
+			while ($row = mysqli_fetch_assoc($result)) {
+				if ($row['email'] == $email) {
+					$error = "Email already exist";
+					$flag = 1;
+				} else if ($row['name'] == $name) {
+					$error = "Business already exist";
+					$flag = 1;
+				}
+			}
+			if ($flag == 0) {
+				$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+				move_uploaded_file($_FILES['image']['tmp_name'], $target);
+				$sql = "INSERT INTO business (name, description, owner_name, password, email, phone, address, approved, category_id, location_id, image, price) 
         VALUES ('$name', '$description', '$owner_name', '$password', '$email', '$phone', '$address', 0, $category, $location, '$target', $price)";
-		if (mysqli_query($conn, $sql)) {
-			echo '<script type="text/javascript">
+				if (mysqli_query($conn, $sql)) {
+					echo '<script type="text/javascript">
                     window.location = "signin.php"
                     </script>';
-		} else {
-			echo "Error: " . $sql . "<br>" . $conn->error;
+				} else {
+					echo "Error: " . $sql . "<br>" . $conn->error;
+				}
+			}
 		}
 	}
-}
-}
 }
 
 ?>
@@ -198,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			</div>
 			<div class="form-group">
 				<label class="col-md-6 ">Password</label>
-				<input type="text" name="password" class="form-control">
+				<input type="password" name="password" class="form-control">
 			</div>
 			<div class="form-group">
 				<label class="col-md-6 ">Repeat Password</label>
