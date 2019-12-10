@@ -19,7 +19,7 @@ session_start();
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Locations</title>
+  <title>Know Your Destination - Locations</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">

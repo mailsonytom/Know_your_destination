@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Request location success</title>
+    <title>Know Your Destination - Request location success</title>
 
      <!-- Google Fonts -->
      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
