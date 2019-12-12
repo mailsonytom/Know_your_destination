@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 12, 2019 at 04:10 PM
+-- Generation Time: Dec 12, 2019 at 04:11 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -152,20 +152,6 @@ CREATE TABLE `users` (
   `address` varchar(1000) NOT NULL,
   `email` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `username`, `password`, `phone`, `address`, `email`) VALUES
-(3, 'Tony', 'tonytom', 'tonytom', '4353649345', 'house address', 'tony@gmai.com'),
-(4, 'gokul', 'gokul', '$2y$10$EaxbEIsoe0WTEj0v2UIHQu.Z5aISoJYEY6gmJJIOc/oqhytLJ9HLa', '3234759347', 'house address2', 'gokul@gmail.com'),
-(5, 'Devan', 'devan', '$2y$10$jXYdZCZ.TApaVln/V8AcdOjrf.ROyLYyglAxiKHKVLJr8oWC0f6xq', '9446938317', 'Devan H, kochi', 'devan@perleybrook.com'),
-(6, 'Jishad', 'jishad', '$2y$10$jqqY02HE2XpZEAHjhyqMpu1QsYTuV3aYVxi6JYN/plWNxfdc4J2Z2', '3459834', 'Jishad bro house, kochi', 'jishad@gmail.com'),
-(7, 'Melson', 'melson', '$2y$10$doNZMBc9rlCUdALMn0X.VeOU/ajc/yaUxYio.ZX1Ouc/Jfya7JvXS', '9348593', 'Melson H', 'melson@gmail.com'),
-(8, 'Tony TOm', 'tony', '$2y$10$PLRlMOWr5W3H5CMhSrz2HuN.SU4gReflp6haqrrFMF5Wv6oLoyDVS', '485389', 'tony(h), ettumanoor', 'tony@gmail.com'),
-(9, 'Subin', 'subin', '$2y$10$TnHcyugK0rFw3XJwcZFSveaBYPR7lRPINL.lNIDVbXBbKkOV7ocgK', '09324874782', 'KSUM kochi', 'subin@gmail.com'),
-(10, 'Tony', 'tony@gmail.com', '$2y$10$LBGcOaKX3AjPdW0HlNbFweicQY/Bylt5sbTtGlF1cHZ19/XohhnJq', '09495532248', 'Chundakkattil House, Athirampuzha P O', 'tony@artincodes.com');
 
 --
 -- Indexes for dumped tables
