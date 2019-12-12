@@ -28,7 +28,7 @@ if (!isset($_SESSION['business_user'])) {
             $non_approved_bookings[] = $booking;
         }
     }
-    $sql = "SELECT name ,email, owner_name from business WHERE id=$business_user_id  ";
+    $sql = "SELECT name ,email, owner_name from business WHERE id=$business_user_id";
 
     $result = mysqli_query($conn, $sql);
     // $user = mysqli_fetch_assoc($result);
@@ -82,6 +82,12 @@ if (!isset($_SESSION['business_user'])) {
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li><a href="logout.php">Logout</a></li>
+
+                </ul>
+            </nav>
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="text-danger"><a href="delete.php?id=<?php echo $business_user_id; ?>">Delete Business</a></li>
 
                 </ul>
             </nav><!-- #nav-menu-container -->
