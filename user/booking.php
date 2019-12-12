@@ -358,8 +358,8 @@ if (!isset($_SESSION['user_id'])) {
             var fromDate = $('#from_datepicker').val()
             var toDate = $('#to_datepicker').val();
             var difference = date_diff_indays(new Date(fromDate), new Date(toDate));
-            if (difference && difference > 0) {
-                var price = <?php echo $_SESSION['price'] ?>;
+            var price = <?php echo $_SESSION['price'] ?>;
+            if (difference && difference > 0 && price && price>0) {
                 var content = "<h1>hello</h1>"
                 $('#price-title').text('Checkout Price');
                 var checkoutPrice = difference * price;

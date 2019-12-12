@@ -58,7 +58,7 @@ About Us Section
                 <p>
                     We'll go through your details submitted and approve shortly.
                 </p>
-                <a class="mr-2" href="locations1.php">
+                <a class="mr-2" href="locations.php">
                 <button class="btn btn-dark">
                     Go to locations
                 </button>

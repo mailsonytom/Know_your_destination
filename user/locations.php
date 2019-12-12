@@ -93,7 +93,7 @@ if (!isset($_SESSION['user_id'])) {
                     <img src="<?php echo $a['image'] ?>" alt="" class="img-fluid">
                     <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
                   </div>
-                  <h2 class="title"><a href="#"><?php echo $a['name'] ?></a></h2>
+                  <h2 class="title"><a href="business.php?id=<?php echo $a['id']; ?>"><?php echo $a['name']; ?></a></h2>
                   <p class="text-center">
                     <?php echo $a['description'] ?>
                   </p>

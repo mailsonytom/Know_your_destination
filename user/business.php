@@ -85,7 +85,7 @@ if (!isset($_SESSION['user_id'])) {
               <h2 class="title"><a href="#"><?php echo $a['name'] ?></a></h2>
               <p class="text-center">
               <?php echo $a['description'] ?>
-              <div class=" text-center font-weight-bold">&#x20B9; <?php echo $a['price'] ?></div>
+              <?php if($price>0){ ?><div class=" text-center font-weight-bold">&#x20B9; <?php echo $a['price'];} ?></div>
 
               </p>
             </div>

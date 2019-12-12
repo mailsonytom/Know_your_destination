@@ -41,11 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (
 		empty($name) || empty($email) || empty($password) || empty($phone)
 		|| empty($location) || empty($owner_name) || empty($category)
-		|| empty($price) || empty($description)
+		|| empty($description)
 	) {
 		$error = "Please fill in all the details";
 		$flag = 1;
 	} else {
+		if (empty($price)) {
+			$price = 0;
+		}
 		$name = test_input($name, $conn);
 		// check if name only contains letters and whitespace
 		if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
@@ -82,9 +85,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 
 		$price = test_input($price, $conn);
-		if (!preg_match("/^[1-9][0-9]*$/", $price)) {
-			$flag = 1;
-			$error = "Only digits are allowed for price";
+		if ($price > 0) {
+			if (!preg_match("/^[1-9][0-9]*$/", $price)) {
+				$flag = 1;
+				$error = "Only digits are allowed for price";
+			}
 		}
 
 		$description = test_input($description, $conn);
@@ -215,7 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			</div>
 			<div class="form-group">
 				<label class="col-md-6 ">Repeat Password</label>
-				<input type="text" name="re_password" class="form-control">
+				<input type="password" name="re_password" class="form-control">
 			</div>
 			<div class="form-group">
 				<label class="col-md-6 ">Image</label><br>
