@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 12, 2019 at 04:11 PM
+-- Generation Time: Dec 14, 2019 at 06:20 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -48,6 +48,13 @@ CREATE TABLE `bookings` (
   `approved` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `user_id`, `business_id`, `from_date`, `to_date`, `approved`) VALUES
+(1, 11, 9, '2019/12/18', '2019/12/19', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -70,6 +77,13 @@ CREATE TABLE `business` (
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `business`
+--
+
+INSERT INTO `business` (`id`, `name`, `description`, `owner_name`, `password`, `email`, `phone`, `address`, `category_id`, `approved`, `location_id`, `image`, `price`) VALUES
+(9, 'Test', 'Business', 'Tony', '$2y$10$nsDXs8Jbq5bo.CwzN2AdHevcuKH..WgohgJFJ3DxmsCjxq2bMh41.', 'tony@gmail.com', '1234567890', 'Address', 2, 1, 16, '../images/business/Test.jpg', 123123);
+
 -- --------------------------------------------------------
 
 --
@@ -82,6 +96,27 @@ CREATE TABLE `business_users` (
   `username` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cards`
+--
+
+CREATE TABLE `cards` (
+  `id` int(11) NOT NULL,
+  `cardno` varchar(200) NOT NULL,
+  `exp` varchar(100) NOT NULL,
+  `cvv` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cards`
+--
+
+INSERT INTO `cards` (`id`, `cardno`, `exp`, `cvv`) VALUES
+(1, '1234123412341234', '12/21', '123'),
+(2, '1234123412340000', '12/12', '000');
 
 -- --------------------------------------------------------
 
@@ -99,7 +134,6 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
-(1, 'Hotel'),
 (2, 'Restaurant'),
 (4, 'Motel'),
 (5, 'Flowers'),
@@ -121,6 +155,13 @@ CREATE TABLE `locations` (
   `requested_user` int(11) NOT NULL,
   `image` varchar(2000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `locations`
+--
+
+INSERT INTO `locations` (`id`, `name`, `description`, `approved`, `requested_user`, `image`) VALUES
+(16, 'Kottayam', 'The best place', 1, 11, '../images/location/Kottayam.jpg');
 
 -- --------------------------------------------------------
 
@@ -154,6 +195,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `phone`, `address`, `email`) VALUES
+(11, 'Tony', 'tony@gmail.com', '$2y$10$2LEti.p9wMMNWjGgiT9ko.Q2lx/wLCfTJJfYAwfBbZKQlVsJjLYcO', '1234567890', 'The address', 'tony@gmail.com'),
+(12, 'Tony', 'ttt', '$2y$10$dLS.eWhXaL1ds9rDI5zJ4.QX9hocTfde7tgx/l3rLeDJMsIwoyTDi', '9495532248', 'Chundakkattil House, Athirampuzha P O', 'tony@artincodes.com');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -182,6 +231,12 @@ ALTER TABLE `business`
 -- Indexes for table `business_users`
 --
 ALTER TABLE `business_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cards`
+--
+ALTER TABLE `cards`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -227,19 +282,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `business`
 --
 ALTER TABLE `business`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `business_users`
 --
 ALTER TABLE `business_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cards`
+--
+ALTER TABLE `cards`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -251,19 +312,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

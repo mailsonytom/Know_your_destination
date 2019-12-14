@@ -158,8 +158,6 @@ if (!isset($_SESSION['user_id'])) {
                             <li><i class="ion-ios-arrow-right"></i> <a href="../user/">Home</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="../admin/">Login as admin</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="../user/signin.php">User sign in</a></li>
-                            <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
                         </ul>
                     </div>
 
