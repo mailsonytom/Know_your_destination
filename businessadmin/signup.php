@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         VALUES ('$name', '$description', '$owner_name', '$password', '$email', '$phone', '$address', 0, $category, $location, '$target', $price)";
 				if (mysqli_query($conn, $sql)) {
 					echo '<script type="text/javascript">
-                    window.location = "signin.php"
+                    window.location = "success.php"
                     </script>';
 				} else {
 					echo "Error: " . $sql . "<br>" . $conn->error;
