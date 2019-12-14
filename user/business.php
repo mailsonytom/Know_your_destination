@@ -58,6 +58,7 @@ if (!isset($_SESSION['user_id'])) {
           <li class=""><a href="./index1.php">Home</a></li>
           <li><a href="locations.php">Locations</a></li>
           <li><a href="./mybookings.php">My bookings</a></li>
+          <li><a href="./logout.php">Logout</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>

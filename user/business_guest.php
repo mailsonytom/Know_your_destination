@@ -52,10 +52,6 @@ session_start();
         <ul class="nav-menu">
           <li class=""><a href="./index1.php">Home</a></li>
           <li><a href="locations_guest.php">Locations</a></li>
-          <!-- <li><a  href="./mybookings.php">My bookings</a></li> -->
-          
-          <li><a href="./logout.php">Logout</a></li>
-
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
