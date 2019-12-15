@@ -38,7 +38,7 @@ if (!isset($_SESSION['admin_user'])) {
 
 <head>
     <meta charset="utf-8">
-    <title>Know your destination</title>
+    <title>Know your destination - Business</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">

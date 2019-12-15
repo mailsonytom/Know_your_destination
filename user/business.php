@@ -23,7 +23,7 @@ if (!isset($_SESSION['user_id'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Business signup</title>
+  <title>Know Your Destination - Business</title>
 
 
   <!-- Google Fonts -->
@@ -48,7 +48,7 @@ if (!isset($_SESSION['user_id'])) {
     <div class="container-fluid">
 
       <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">Know Your Destination</a></h1>
+        <h1><a  class="scrollto">Know Your Destination</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
@@ -83,8 +83,7 @@ if (!isset($_SESSION['user_id'])) {
                   <h2 class="title"><a href="#"><?php echo $a['name'] ?></a></h2>
                   <p class="text-center">
                     <?php echo $a['description'] ?>
-                    <?php if ($price > 0) { ?><div class=" text-center font-weight-bold">&#x20B9; <?php echo $a['price'];
-                                                                                                } ?></div>
+                    <div class=" text-center font-weight-bold">&#x20B9; <?php echo $a['price'] ?></div>
 
                   </p>
                 </div>

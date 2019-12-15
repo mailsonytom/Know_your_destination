@@ -82,8 +82,8 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet" />
-    <title>Business signup</title>
+    <link href="../assets/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <title>Know your Destination - Booking</title>
 
 
     <!-- Google Fonts -->
@@ -111,7 +111,7 @@ if (!isset($_SESSION['user_id'])) {
         <div class="container-fluid">
 
             <div id="logo" class="pull-left">
-                <h1><a href="#intro" class="scrollto">Know Your Destination</a></h1>
+                <h1><a class="scrollto">Know Your Destination</a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
             </div>
@@ -287,9 +287,9 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </div>
     </footer><!-- #footer -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../assets/lib/jquery/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="../assets/lib/bootstrap/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <style type="text/css">
         .datepicker {
             font-size: 0.875em;

@@ -43,7 +43,7 @@ if (!isset($_SESSION['business_user'])) {
 
 <head>
     <meta charset="utf-8">
-    <title>Know Your Destination</title>
+    <title>Know Your Destination - Business Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">

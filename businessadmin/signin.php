@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
   <meta charset="utf-8">
-  <title>Know Your Destination</title>
+  <title>Know Your Destination - Business Signin</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container-fluid">
 
       <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">Know Your Destination</a></h1>
+        <h1><a class="scrollto">Know Your Destination</a></h1>
       </div>
 
       <nav id="nav-menu-container">
