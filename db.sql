@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 27, 2019 at 06:26 PM
+-- Generation Time: Dec 14, 2019 at 06:20 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -53,27 +53,7 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `user_id`, `business_id`, `from_date`, `to_date`, `approved`) VALUES
-(1, 3, 1, '12/2/2019', '24/2/2019', 1),
-(2, 3, 1, '15/2/2019', '24/2/2019', 1),
-(3, 3, 1, '10/08/2019', '12/08/2019', 1),
-(4, 4, 2, '1212121', '121212', 1),
-(5, 4, 1, '1231231', '123123', 1),
-(6, 3, 2, '12-12-19', '14-12-19', 1),
-(7, 5, 1, '14/09/2019', '21/09/2019', 0),
-(8, 5, 1, '', '', 0),
-(9, 5, 1, '', '', 0),
-(10, 5, 1, '', '', 0),
-(11, 5, 1, '', '', 0),
-(12, 5, 1, '', '', 0),
-(13, 6, 1, '28/09/2019', '30/09/2019', 0),
-(14, 8, 2, '19/10/2019', '20/10/2019', 0),
-(15, 9, 2, '25/11/2019', '26/11/2019', 1),
-(16, 9, 2, '27/11/2019', '28/11/2019', 0),
-(17, 9, 2, '28/11/2019', '29/11/2019', 1),
-(18, 9, 4, '25/11/2019', '26/11/2019', 0),
-(19, 9, 4, '26/11/2019', '25/11/2019', 0),
-(20, 9, 4, '2019/11/26', '2019/11/27', 0),
-(21, 9, 4, '2019/11/26', '2019/11/27', 0);
+(1, 11, 9, '2019/12/18', '2019/12/19', 0);
 
 -- --------------------------------------------------------
 
@@ -102,12 +82,7 @@ CREATE TABLE `business` (
 --
 
 INSERT INTO `business` (`id`, `name`, `description`, `owner_name`, `password`, `email`, `phone`, `address`, `category_id`, `approved`, `location_id`, `image`, `price`) VALUES
-(1, 'Oasis', 'Hotel business', 'Vakkachan', '$2y$10$Nu2aRiiHbEORjgtMIRbz.e/FaOEoKdL.AEyeAoVH1DJaJeCfsb5s6', 'vakkachan@gmail.com', '932423123', '', 1, 1, 1, '../images/business/KSUM.png', 1200),
-(2, 'choice', 'Busienss', 'choice chettan', '$2y$10$YaXJZE2jQsmCL2Rxe1Q/Au.wWQn2hk3OKzTz7vKAVqJsZF2QWL5ou', 'choice@gmail.com', '348432', 'Palakkad', 1, 1, 2, '../images/business/KSUM.png', 200),
-(3, 'KSUM', 'Busienss', 'ksum', '$2y$10$Vs18TYvbPVZcfRq9cyKtNevOwqlhLpXT5rKQY8G5zR1ixjNWdVoBW', 'ksum@gmail.com', '453987', 'KSUM kochi', 4, 0, 1, '../images/business/KSUM.png', 300),
-(4, 'Taj', 'Busienss', 'taj', '$2y$10$akjHiR.6m98uOR1XpBrYX.DDO4bLvEi33PoBj0oAcvhsLm88OcOVG', 'taj@gmail.com', '49583', 'Taj kochi', 1, 1, 1, '../images/business/Taj.jpg', 550),
-(5, 'crown', 'Busienss', 'crown', '$2y$10$.RTJHlEew8/eDlWeHnTTXO7qZle1Fw6GjWQIKxet8TgvMY/N/ME8C', 'crown@gmail.com', '4598389', 'jg', 1, 0, 1, '../images/business/crown.JPG', 320),
-(6, 'Atria', 'its a flower business in kochi', 'atria', '$2y$10$rbvzd5SdTAR/FLhE1Bcup.WMi.Yx32dWfptKt8XsCcnWZwF2bfDlC', 'atria@gmail.com', '9446938318', 'atria kochi', 5, 0, 1, '../images/business/Atria.png', 1000);
+(9, 'Test', 'Business', 'Tony', '$2y$10$nsDXs8Jbq5bo.CwzN2AdHevcuKH..WgohgJFJ3DxmsCjxq2bMh41.', 'tony@gmail.com', '1234567890', 'Address', 2, 1, 16, '../images/business/Test.jpg', 123123);
 
 -- --------------------------------------------------------
 
@@ -125,6 +100,27 @@ CREATE TABLE `business_users` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cards`
+--
+
+CREATE TABLE `cards` (
+  `id` int(11) NOT NULL,
+  `cardno` varchar(200) NOT NULL,
+  `exp` varchar(100) NOT NULL,
+  `cvv` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cards`
+--
+
+INSERT INTO `cards` (`id`, `cardno`, `exp`, `cvv`) VALUES
+(1, '1234123412341234', '12/21', '123'),
+(2, '1234123412340000', '12/12', '000');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `categories`
 --
 
@@ -138,7 +134,6 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
-(1, 'Hotel'),
 (2, 'Restaurant'),
 (4, 'Motel'),
 (5, 'Flowers'),
@@ -166,16 +161,7 @@ CREATE TABLE `locations` (
 --
 
 INSERT INTO `locations` (`id`, `name`, `description`, `approved`, `requested_user`, `image`) VALUES
-(1, 'Kochi', 'nummade kochi', 1, 3, '../images/location/kochi.jpg'),
-(2, 'Kottayam', 'nummade kottayam', 1, 4, '../images/location/kottayam.jpg'),
-(3, 'Kollam', 'kollam is a beautiful place', 0, 5, '../images/location/Kollam.png'),
-(4, 'kannur', 'kannur is a beautiful place', 0, 5, '../images/location/kannur.png'),
-(5, 'wayanad', 'wayanad is a beautiful place', 0, 5, '../images/location/wayanad.png'),
-(6, 'Thrissur', 'Cultural place', 1, 9, '../images/location/Thrissur.jpg'),
-(7, 'Trivandrum', 'Capital of kerala', 0, 9, '../images/location/Trivandrum.png'),
-(11, 'trv', '', 0, 9, '../images/location/trv.png'),
-(12, 'sgfhsb', '', 0, 9, '../images/location/sgfhsb.png'),
-(13, 'skdfbsjhbf', 'test\'s home', 0, 9, '../images/location/skdfbsjhbf.png');
+(16, 'Kottayam', 'The best place', 1, 11, '../images/location/Kottayam.jpg');
 
 -- --------------------------------------------------------
 
@@ -191,14 +177,6 @@ CREATE TABLE `reviews` (
   `location_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `reviews`
---
-
-INSERT INTO `reviews` (`id`, `title`, `description`, `business_id`, `location_id`, `user_id`) VALUES
-(1, 'Nice hotel', 'This hotel is very nice to stay', 1, 1, 3),
-(23, 'My reviewc', 'my review description ', 1, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -221,13 +199,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `phone`, `address`, `email`) VALUES
-(3, 'Tony', 'tonytom', 'tonytom', '4353649345', 'house address', 'tony@gmai.com'),
-(4, 'gokul', 'gokul', '$2y$10$EaxbEIsoe0WTEj0v2UIHQu.Z5aISoJYEY6gmJJIOc/oqhytLJ9HLa', '3234759347', 'house address2', 'gokul@gmail.com'),
-(5, 'Devan', 'devan', '$2y$10$jXYdZCZ.TApaVln/V8AcdOjrf.ROyLYyglAxiKHKVLJr8oWC0f6xq', '9446938317', 'Devan H, kochi', 'devan@perleybrook.com'),
-(6, 'Jishad', 'jishad', '$2y$10$jqqY02HE2XpZEAHjhyqMpu1QsYTuV3aYVxi6JYN/plWNxfdc4J2Z2', '3459834', 'Jishad bro house, kochi', 'jishad@gmail.com'),
-(7, 'Melson', 'melson', '$2y$10$doNZMBc9rlCUdALMn0X.VeOU/ajc/yaUxYio.ZX1Ouc/Jfya7JvXS', '9348593', 'Melson H', 'melson@gmail.com'),
-(8, 'Tony TOm', 'tony', '$2y$10$PLRlMOWr5W3H5CMhSrz2HuN.SU4gReflp6haqrrFMF5Wv6oLoyDVS', '485389', 'tony(h), ettumanoor', 'tony@gmail.com'),
-(9, 'Subin', 'subin', '$2y$10$TnHcyugK0rFw3XJwcZFSveaBYPR7lRPINL.lNIDVbXBbKkOV7ocgK', '09324874782', 'KSUM kochi', 'subin@gmail.com');
+(11, 'Tony', 'tony@gmail.com', '$2y$10$2LEti.p9wMMNWjGgiT9ko.Q2lx/wLCfTJJfYAwfBbZKQlVsJjLYcO', '1234567890', 'The address', 'tony@gmail.com'),
+(12, 'Tony', 'ttt', '$2y$10$dLS.eWhXaL1ds9rDI5zJ4.QX9hocTfde7tgx/l3rLeDJMsIwoyTDi', '9495532248', 'Chundakkattil House, Athirampuzha P O', 'tony@artincodes.com');
 
 --
 -- Indexes for dumped tables
@@ -258,6 +231,12 @@ ALTER TABLE `business`
 -- Indexes for table `business_users`
 --
 ALTER TABLE `business_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cards`
+--
+ALTER TABLE `cards`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -303,19 +282,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `business`
 --
 ALTER TABLE `business`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `business_users`
 --
 ALTER TABLE `business_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cards`
+--
+ALTER TABLE `cards`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -327,19 +312,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

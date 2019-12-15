@@ -61,7 +61,6 @@ session_start();
         <ul class="nav-menu">
           <li class="menu-active"><a href="./index1.php">Home</a></li>
           <li><a href="request_location.php">Request a location</a></li>
-          <li><a  href="./mybookings.php">My bookings</a></li>
           
           <li><a href="./signin.php">Login</a></li>
 

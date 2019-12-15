@@ -84,12 +84,12 @@ if (!isset($_SESSION['admin_user'])) {
     <nav class="navbar navbar-light bg-light mt-5 pt-5">
         <div class="m-auto ">
             <a href="business.php">
-                <Button class="btn btn-secondary">
+                <Button class="btn btn-light">
                     Business
                 </Button>
             </a>
             <a href="locations.php">
-                <Button class="btn btn-light">
+                <Button class="btn btn-secondary">
                     Location
                 </Button>
             </a>
@@ -133,6 +133,9 @@ if (!isset($_SESSION['admin_user'])) {
                                 <td>
                                     <a href="locations.php?location_id=<?php echo $a['id']; ?>"><button class="btn btn-primary">Approve</button></a>
                                 </td>
+                                <td>
+                                    <a href="reject_location.php?id=<?php echo $a['id']; ?>"><button class="btn btn-danger">Reject</button></a>
+                                </td>
                             </tr>
                         <?php } ?>
                         <?php if (count($non_approved_locations) === 0) { ?>
@@ -163,7 +166,9 @@ if (!isset($_SESSION['admin_user'])) {
                                 <td><?php echo $a['description'] ?></td>
                                 <td><?php echo $a['user_name'] ?></td>
                                 <td><?php echo $a['user_phone'] ?></td>
-
+                                <td>
+                                    <a href="reject_location.php?id=<?php echo $a['id']; ?>"><button class="btn btn-danger">Delete</button></a>
+                                </td>
                             </tr>
                         <?php } ?>
                         <?php if (count($approved_locations) === 0) { ?>
@@ -200,8 +205,6 @@ if (!isset($_SESSION['admin_user'])) {
                             <li><i class="ion-ios-arrow-right"></i> <a href="../user/">Home</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="../admin/">Login as admin</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="../user/signin.php">User sign in</a></li>
-                            <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
                         </ul>
                     </div>
 

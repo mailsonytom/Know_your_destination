@@ -43,10 +43,16 @@ if (!isset($_SESSION['user_id'])) {
                 $error = "Wrong cvv";
             }
         }
+        $cardsql = "SELECT * FROM cards WHERE cardno = '$cardno' AND exp='$exp' AND cvv='$cvv'";
+        $cardresult = mysqli_query($conn, $cardsql);
+        $num_rows = mysqli_num_rows($cardresult);
+        if($num_rows == 0){
+            $flag = 1;
+            $error = "Invalid card details";
+        }
         if ($flag == 0) {
                 $sql = "INSERT INTO bookings (user_id, business_id, from_date, to_date, approved)
                 VALUES ('$user_id', '$business_id', '$from_date', '$to_date', 0)";
-                echo $sql;
                     if (mysqli_query($conn, $sql)) {
                         echo '<script type="text/javascript">
                         window.location = "mybookings.php"

@@ -89,7 +89,7 @@ if (!isset($_SESSION['admin_user'])) {
     <nav class="navbar navbar-light bg-light mt-5 pt-5">
         <div class="m-auto ">
             <a href="business.php">
-                <Button class="btn btn-secondary">
+                <Button class="btn btn-light">
                     Business
                 </Button>
             </a>
@@ -99,7 +99,7 @@ if (!isset($_SESSION['admin_user'])) {
                 </Button>
             </a>
             <a href="category.php">
-                <Button class="btn btn-light">
+                <Button class="btn btn-secondary">
                     Category
                 </Button>
             </a>
@@ -114,6 +114,7 @@ if (!isset($_SESSION['admin_user'])) {
                 <div class="mt-3">
                     <?php foreach ($categories as $a) { ?>
                         <span class="badge badge-warning p-3 m-2"><?php echo $a['name'] ?>
+                            <a href="delete_category.php?id=<?php echo $a['id']; ?>" class="text-dark"><b>X</b></a>
                         </span>
                     <?php } ?>
                 </div>
@@ -164,8 +165,6 @@ if (!isset($_SESSION['admin_user'])) {
                             <li><i class="ion-ios-arrow-right"></i> <a href="../user/">Home</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="../admin/">Login as admin</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="../user/signin.php">User sign in</a></li>
-                            <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
                         </ul>
                     </div>
 

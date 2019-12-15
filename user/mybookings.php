@@ -110,11 +110,19 @@ if (!isset($_SESSION['user_id'])) {
                                                 } else {
                                                     echo "No";
                                                 }
-                                            }
-                                            ?></td>
-
+                                             ?>
+                                        </td>
+                                        <?php
+                                        if ($a['approved']) { ?>
+                                            <td><button class="btn btn-danger">You cannot Cancel an approved booking</button></td>
+                                        <?php
+                                        } else {
+                                            ?>
+                                            <td><a href="cancel.php?id=<?php echo $a['id']; ?>"><button class="btn btn-danger">Cancel booking</button></a></td>
+                                        <?php } ?>
                                     </tr>
-                                    <?php  ?>
+                                    <?php  }?>
+
                                     <?php if (count($bookings) === 0) { ?>
                                         <tr>
                                             <td><?php echo "No bookings" ?></td>
@@ -150,8 +158,6 @@ if (!isset($_SESSION['user_id'])) {
                             <li><i class="ion-ios-arrow-right"></i> <a href="../user/">Home</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="../admin/">Login as admin</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="../user/signin.php">User sign in</a></li>
-                            <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
                         </ul>
                     </div>
 

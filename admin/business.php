@@ -137,6 +137,9 @@ if (!isset($_SESSION['admin_user'])) {
                                 <td>
                                     <a href="business.php?business_id=<?php echo $a['id']; ?>"><button class="btn btn-primary">Approve</button></a>
                                 </td>
+                                <td>
+                                    <a href="reject_business.php?id=<?php echo $a['id']; ?>"><button class="btn btn-danger">Reject</button></a>
+                                </td>
                             </tr>
                         <?php } ?>
                         <?php if (count($non_approved_business) === 0) { ?>
@@ -166,7 +169,9 @@ if (!isset($_SESSION['admin_user'])) {
                                 <td><?php echo $a['owner_name'] ?></td>
                                 <td><?php echo $a['phone'] ?></td>
                                 <td><?php echo $a['location_name'] ?></td>
-
+                                <td>
+                                    <a href="reject_business.php?id=<?php echo $a['id']; ?>"><button class="btn btn-danger">Delete</button></a>
+                                </td>
                             </tr>
                         <?php } ?>
                         <?php if (count($approved_business) === 0) { ?>
@@ -200,8 +205,6 @@ if (!isset($_SESSION['admin_user'])) {
                             <li><i class="ion-ios-arrow-right"></i> <a href="../user/">Home</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="../admin/">Login as admin</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="../user/signin.php">User sign in</a></li>
-                            <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
                         </ul>
                     </div>
 
