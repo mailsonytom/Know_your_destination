@@ -189,10 +189,8 @@ while ($aBusiness =  mysqli_fetch_assoc($result)) {
       </div>
     </section><!-- #facts -->
 
-    <!--==========================
-      Portfolio Section
-    ============================-->
-    <section id="portfolio" class="section-bg">
+
+    <!-- <section id="portfolio" class="section-bg">
       <div class="container">
 
         <header class="section-header">
@@ -216,11 +214,10 @@ while ($aBusiness =  mysqli_fetch_assoc($result)) {
               </div>
             </div>
           <?php } ?>
-
         </div>
 
       </div>
-    </section><!-- #portfolio -->
+    </section> -->
 
 
     <!--==========================

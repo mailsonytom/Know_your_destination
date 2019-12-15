@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li><a href="../user/">User</a></li>
+          <li><a href="../user/signin.php">User</a></li>
           <li><a href="../admin/">Admin</a></li>
           <li><a href="./signup.php">Sign up</a></li>
 

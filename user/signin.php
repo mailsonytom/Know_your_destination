@@ -71,8 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="./index1.php">Home</a></li>
-          <li><a href="../admin/">Sign in as Admin</a></li>
-          <li><a  href="../businessadmin/">Add your business</a></li>
+          <li><a href="../admin/">Admin</a></li>
+          <li><a  href="../businessadmin/">Business</a></li>
           
           <li><a href="./signup.php">Sign up</a></li>
 

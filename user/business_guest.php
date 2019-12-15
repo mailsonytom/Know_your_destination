@@ -54,7 +54,7 @@ session_start();
           <li><a href="locations_guest.php">Locations</a></li>
           <!-- <li><a  href="./mybookings.php">My bookings</a></li> -->
           
-          <li><a href="./logout.php">Logout</a></li>
+          <li><a href="./signin.php">Login</a></li>
 
         </ul>
       </nav><!-- #nav-menu-container -->
